@@ -1,0 +1,39 @@
+# Java #
+*.class
+# Vim Files #
+*~
+*.swp
+
+# Package Files #
+*.jar
+*.war
+*.ear
+# Carpeta para cosas de prueba #
+status/
+
+# Eclipse #
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
