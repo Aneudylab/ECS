@@ -34,7 +34,7 @@ public class Usuario {
 	// Setters y Getters
 	// -----------------------------------------------------------------
 
-	public int getUsuarioID() {
+	public int getID() {
 		return usuarioID;
 	}
 
@@ -50,22 +50,13 @@ public class Usuario {
 		return nombre;
 	}
 
- 
 	public String getRol() {
 		return rol;
 	}
 
 	
-	public void setUsuarioID(int usuarioID) {
+	public void setID(int usuarioID) {
 		this.usuarioID = usuarioID;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
 	}
 
 	public void setNombre(String nombre) {
