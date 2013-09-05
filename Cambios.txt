@@ -1,0 +1,35 @@
+Cambios realizados a los archivos.
+
+
+En la clase esqueleto:
+
+Linea 5 --> Ahora se llama Esqueleto.
+
+
+En la clase IniciarSesionForm:
+
+Linea 35  --> Ahora es un JPasswordTextField.
+Linea 74  --> Inicializa un JPasswordTextField en vez de un JTextField.
+Linea 111 --> Se obtiene el valor por medio de new String(txtClave.getPassword()), ya
+              que si utilizo txtClave.getText() muestra este mensaje:
+
+              Note: Esqueleto.java uses or overrides a deprecated API.
+              Note: Recompile with -Xlint:deprecation for details.
+              
+              No se si ustedes conocen otra forma. Lo pueden cambiar...
+
+En la misma linea --> La funcion se llama ahora IniciarSesion().
+
+
+En la clase Controladora:
+
+Linea 13 --> La funcion se llama ahora IniciarSesion().
+
+
+En la clase MainWindow:
+
+Linea 26 --> La constante ahora tiene el valor de "evaluarRepresentante".
+Linea 84 --> El boton ahora se llama "Evaluar Representante".
+
+
+

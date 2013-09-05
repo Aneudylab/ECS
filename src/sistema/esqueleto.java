@@ -2,7 +2,7 @@ package sistema;
 
 import view.IniciarSesionForm;
 
-public class esqueleto {
+public class Esqueleto {
 	
 	public static void main(String[] args) {
 		 try
