@@ -9,7 +9,7 @@
 *.war
 *.ear
 # Carpeta para cosas de prueba #
-status/
+checks/
 
 # Eclipse #
 *.pydevproject

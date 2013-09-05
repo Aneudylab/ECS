@@ -23,7 +23,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	private static final String CREAR_PLANTILLA = "crearPantillaEvaluacion";
 	private static final String GENERAR_REPORTE = "generarReporte";
-	private static final String EVALUAR_REPRESENTANTE = "evaluarReprecentante";
+	private static final String EVALUAR_REPRESENTANTE = "evaluarRepresentante";
 	private static final String ACTUALIZAR_EVALUACION = "actualizarEvaluacion";
 	private static final String REVISAR_EVALUACION = "revisarEvaluacion";
 	private static final String SOLICITAR_REVICION_EVALUACION = "solicitarRevicionEvaluacion";
@@ -81,7 +81,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnGenerarReporte.addActionListener(this);
 		add(btnGenerarReporte, gbc);
 
-		btnEvaluarReprecentante = new JButton("Evaluar Reprecentante ");
+		btnEvaluarReprecentante = new JButton("Evaluar Representante ");
 		btnEvaluarReprecentante.setBounds(100, 100, 100, 100);
 		gbc.gridy = 4;
 		btnEvaluarReprecentante.setActionCommand(EVALUAR_REPRESENTANTE);

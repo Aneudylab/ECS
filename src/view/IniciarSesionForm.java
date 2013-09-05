@@ -32,7 +32,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	// -----------------------------------------------------------------
 
 	private JTextField txtUsuario;
-	private JTextField txtClave;
+	private JPasswordField txtClave;
 	private JLabel lblUsuario;
 	private JLabel lblClave;
 	private JLabel lblTitulo;
@@ -71,7 +71,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 		gbc.gridy = 2;
 		add(lblClave, gbc);
 
-		txtClave = new JTextField("", 12);
+		txtClave = new JPasswordField("", 12);
 		gbc.gridx = 1;
 		add(txtClave, gbc);		
 		
@@ -108,7 +108,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 		if (evento.getActionCommand() == INICIAR_SESION) {
 			try {	
 				ControladorSesion controlador = new ControladorSesion();
-				controlador.iniciarSeion(txtUsuario.getText(), txtClave.getText());
+				controlador.iniciarSesion(txtUsuario.getText(), new String(txtClave.getPassword()));
 				
 				
 			} catch (Exception e) {

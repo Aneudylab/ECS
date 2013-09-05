@@ -10,7 +10,7 @@ public class ControladorSesion {
 	private String nombre = "";
 	private String clave = "";
 
-	public void iniciarSeion(String nombreUsuario, String Clave) {
+	public void iniciarSesion(String nombreUsuario, String Clave) {
 
 		Usuario usuario = new Usuario(nombreUsuario, Clave);
 		UsuarioDA usuarioDA = new UsuarioDA();
