@@ -26,7 +26,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private static final String EVALUAR_REPRESENTANTE = "evaluarRepresentante";
 	private static final String ACTUALIZAR_EVALUACION = "actualizarEvaluacion";
 	private static final String REVISAR_EVALUACION = "revisarEvaluacion";
-	private static final String SOLICITAR_REVICION_EVALUACION = "solicitarRevicionEvaluacion";
+	private static final String CREAR_USUARIO = "crearUsuario";
 
 	// -----------------------------------------------------------------
 	// Atributos
@@ -43,7 +43,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private JButton btnEvaluarReprecentante;
 	private JButton btnActualizarEvaluacion;
 	private JButton btnRevisarEvaluacion;
-	private JButton btnSolicitarRevicionEvaluacion;
+	private JButton btnCrearUsuarios;
 	private JLabel 	lblBienvenido;
 
 	public MainWindow(String mensaje) {
@@ -102,14 +102,14 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnRevisarEvaluacion.addActionListener(this);
 		add(btnRevisarEvaluacion, gbc);
 
-		btnSolicitarRevicionEvaluacion = new JButton(
-				"Solicitar Revicion Evaluacion ");
-		btnSolicitarRevicionEvaluacion.setBounds(100, 100, 100, 100);
+		btnCrearUsuarios = new JButton(
+				"Crear Usuario");
+		btnCrearUsuarios.setBounds(100, 100, 100, 100);
 		gbc.gridy = 7;
-		btnSolicitarRevicionEvaluacion
-				.setActionCommand(SOLICITAR_REVICION_EVALUACION);
-		btnSolicitarRevicionEvaluacion.addActionListener(this);
-		add(btnSolicitarRevicionEvaluacion, gbc);
+		btnCrearUsuarios
+				.setActionCommand(CREAR_USUARIO);
+		btnCrearUsuarios.addActionListener(this);
+		add(btnCrearUsuarios, gbc);
 		
 		lblBienvenido = new JLabel("Usuario	: "+mensaje);
 		gbc.gridy = 8;
@@ -141,9 +141,9 @@ public class MainWindow extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
 					"Revisar Evaluar ", JOptionPane.INFORMATION_MESSAGE);
 		}
-		if (SOLICITAR_REVICION_EVALUACION.equals(comando)) {
+		if (CREAR_USUARIO.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Solicitar Revicion Evaluacion  ",
+					"Crear Usuario ",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 

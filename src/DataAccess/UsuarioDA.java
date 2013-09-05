@@ -2,7 +2,7 @@ package DataAccess;
 
 import domain.Usuario;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 
 public class UsuarioDA {
@@ -20,12 +20,15 @@ public class UsuarioDA {
 		
         String SQLquery = "SELECT id_usuario, nombre, r.descripcion rol "+
                           " FROM usuario u, rol r " + 
-                          "WHERE u.id_rol = r.id_rol AND nombre_usuario='"+ usuario + "' And CLAVE='" + clave + "'";
+                          "WHERE u.id_rol = r.id_rol AND nombre_usuario= ? And CLAVE= ?";
 				
 		try {
 
-			Statement stmt = con.createStatement();
-			ResultSet result = stmt.executeQuery(SQLquery);
+			PreparedStatement stmt = con.prepareStatement(SQLquery);
+			int i = 0;
+			stmt.setString(++i,usuario);
+			stmt.setString(++i,clave);
+			ResultSet result = stmt.executeQuery();
 
 		// verificando si el usuario existe, Si no el id se mantienen en 0
 			

@@ -19,7 +19,7 @@ public class DBManager {
 	private String driver = "com.mysql.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/ecs";
 	private String user = "root";
-	private String pwd = "aneudylab";
+	private String pwd = "mysql";
 
 	private DBManager() {
 		if (connection == null) {
@@ -64,6 +64,18 @@ public class DBManager {
 		}
 		return connection;
 
+	}
+	
+	public static void closeDBConnection (){
+	   
+	   	try {
+			connection.close();
+			System.out.println("Conexión cerrada... ");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+
+		}
+	   
 	}
 
 }
