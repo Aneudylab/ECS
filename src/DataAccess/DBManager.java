@@ -19,7 +19,7 @@ public class DBManager {
 	private String driver = "com.mysql.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/ecs";
 	private String user = "root";
-	private String pwd = "mysql";
+	private String pwd = "aneudylab15";
 
 	private DBManager() {
 		if (connection == null) {
