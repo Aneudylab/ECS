@@ -1,0 +1,9 @@
+Proyecto INF-522 2013-02
+ECS
+----------------------------------------------
+Lenguaje: Java
+   RDBMS: MySql Server
+----------------------------------------------   
+Comando de compilación (Desde src):
+   javac -d ..\bin DataAccess\DBManager.java
+----------------------------------------------   
