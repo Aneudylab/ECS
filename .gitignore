@@ -11,6 +11,9 @@
 # Carpeta para cosas de prueba #
 checks/
 
+# Extras #
+*.db
+
 # Eclipse #
 *.pydevproject
 .project

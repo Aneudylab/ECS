@@ -38,7 +38,7 @@ public class PanelImagen extends JPanel
         setLayout( layout );
         
         // Carga la imagen
-        ImageIcon icono = new ImageIcon( "data/titulo.jpg" );
+        ImageIcon icono = new ImageIcon( "../resources/titulo.jpg" );
 
         // La agrega a la etiqueta
         imagen = new JLabel( "" );
