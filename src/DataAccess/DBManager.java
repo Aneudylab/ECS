@@ -18,8 +18,8 @@ public class DBManager {
 	private static DBManager dbManager;
 	private String driver = "com.mysql.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/ecs";
-	private String user = "root";
-	private String pwd = "aneudylab";
+	private String user = "ecsusr";
+	private String pwd = "ecspwd";
 
 	private DBManager() {
 		if (connection == null) {
