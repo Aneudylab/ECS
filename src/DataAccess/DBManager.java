@@ -19,7 +19,7 @@ public class DBManager {
 	private static Connection connection = null;
 	private static DBManager dbManager;
 	private static PreparedStatement stm;
-    private static ResultSet resultado;
+        private static ResultSet resultado;
 	private String driver = "com.mysql.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost/ecs";
 	private String user = "root";
@@ -78,7 +78,7 @@ public class DBManager {
         }
         resultado = stm.executeQuery();
         
-     return resultado;
+         return resultado;
  
 	}
 	
@@ -133,9 +133,9 @@ public class DBManager {
 	   
 	   	try {
 	   		if(!connection.isClosed()){
-	            connection.close();
-	            System.out.println("Conexión cerrada... ");
-	        }
+	                    connection.close();
+	                    System.out.println("Conexión cerrada... ");
+	                 }
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 
