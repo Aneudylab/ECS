@@ -17,10 +17,14 @@ public class ControladorSesion {
 		UsuarioDA usuarioDA = new UsuarioDA();
         usuarioDA.leerUsuario(usu);
 
+        /* 
+         * Antes de llamar esta función el usuario actual se vuelve null
+         * Esto asegura que si la autenticación falla no habrá usuario actual.
+         */
+        ControladorSesion.usuarioActual = null;
+
         if(usu.getID() != 0){
             ControladorSesion.usuarioActual = usu;
-			MainWindow m = new MainWindow(usu.getNombre());
-			m.setVisible(true);
 		}
 	}
 

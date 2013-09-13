@@ -151,6 +151,8 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 								"Yupi Clave o Password incorrecto,",
 								"Error de acceso", JOptionPane.ERROR_MESSAGE);
 					} else {
+                        MainWindow m = new MainWindow(ControladorSesion.usuarioActual.getNombre());
+                        m.setVisible(true);
 						setVisible(false);
 					}
 
