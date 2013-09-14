@@ -34,7 +34,8 @@ public class DBManager {
                 connection = DriverManager.getConnection(url, user, pwd);
 
                 if (connection != null) {
-                    System.out.println("Conexión establecida... ");
+                    // Comentado. Esto muestra un mensaje que solamente es necesario para testing
+                    //System.out.println("Conexión establecida... ");
                 }
 
             } catch (IllegalAccessException e) {
