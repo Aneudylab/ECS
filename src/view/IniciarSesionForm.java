@@ -111,24 +111,13 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent evento) {
 
-		if (evento.getActionCommand() == INICIAR_SESION) {
-			try {
-				ControladorSesion controlador = new ControladorSesion();
-				controlador.iniciarSesion(txtUsuario.getText(), new String(
-						txtClave.getPassword()));
+        if (evento.getActionCommand() == INICIAR_SESION){
+            String usr = txtUsuario.getText();
+            String pwd = new String(txtClave.getPassword());
 
-				if (ControladorSesion.usuarioActual == null) {
-					JOptionPane.showMessageDialog(null,
-							"Yupi Clave o Password incorrecto,",
-							"Error de acceso", JOptionPane.ERROR_MESSAGE);
-				} else {
-					this.setVisible(false);
-				}
+            IniciarSesion(usr, pwd);
+        }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		if (evento.getActionCommand() == CANCELAR) {
 			System.exit(0);
 		}
@@ -136,31 +125,38 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	}
 
 	// Inner clase para poder iniciar sesion precionando la tecla enter
-	protected class PresionarTecla extends KeyAdapter {
+    protected class PresionarTecla extends KeyAdapter {
 
-		
-		public void keyPressed(KeyEvent ke) {
-			if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-				try {
-					ControladorSesion controlador = new ControladorSesion();
-					controlador.iniciarSesion(txtUsuario.getText(), new String(
-							txtClave.getPassword()));
 
-					if (ControladorSesion.usuarioActual == null) {
-						JOptionPane.showMessageDialog(null,
-								"Yupi Clave o Password incorrecto,",
-								"Error de acceso", JOptionPane.ERROR_MESSAGE);
-					} else {
-                        MainWindow m = new MainWindow(ControladorSesion.usuarioActual.getNombre());
-                        m.setVisible(true);
-						setVisible(false);
-					}
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER){
+                String usr = txtUsuario.getText();
+                String pwd = new String(txtClave.getPassword());
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+                IniciarSesion(usr, pwd);
+            }
+        }
+    }
+
+    private void IniciarSesion(String usuario, String clave)
+    {
+        try {
+            ControladorSesion controlador = new ControladorSesion();
+            controlador.iniciarSesion(usuario, clave);
+
+            if (ControladorSesion.usuarioActual == null) {
+                JOptionPane.showMessageDialog(null,
+                        "Yupi Clave o Password incorrecto,",
+                        "Error de acceso", JOptionPane.ERROR_MESSAGE);
+            } else {
+                MainWindow m = new MainWindow(ControladorSesion.usuarioActual.getNombre());
+                m.setVisible(true);
+                setVisible(false);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
