@@ -1,6 +1,8 @@
+
 package DataAccess;
 
 import domain.Usuario;
+import domain.Rol;
 import java.sql.ResultSet;
 
 
@@ -12,23 +14,24 @@ public class UsuarioDA {
     public void leerUsuario(Usuario usu) {
 
         try{
-
+            Rol rol;
             ResultSet result;								
             Object[] parametros;			
 
-            String Select = "SELECT id_usuario, nombre, r.descripcion rol "+
-                "FROM usuario u, rol r " + 
-                "WHERE u.id_rol = r.id_rol AND nombre_usuario= ? And CLAVE= ?";
+            String Select = "SELECT id_usuario id,nombre,id_supervisor supervisor,rol.id_rol,descripcion rol " +
+                            "FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol " + 
+                            "WHERE nombre_usuario = ? And clave= ?";
 
             parametros = new Object[]{ usu.getNombreUsuario(), usu.getClave() };
 
             DBManager.openDBConnection();
             result = DBManager.ejecutarQuery(Select, parametros);
 
-            if(result.next()){				
-                usu.setID(result.getInt("id_usuario"));
+            if(result.next()){			
+       			rol = new Rol(result.getInt("id_rol"),result.getString("rol"));
+                usu.setID(result.getInt("id"));
                 usu.setNombre(result.getString("nombre"));
-                usu.setRol(result.getString("rol"));
+                usu.setRol(rol);
             }
 
             // Manejo de excepcion
