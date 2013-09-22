@@ -46,7 +46,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private JButton btnCrearUsuarios;
 	private JLabel 	lblBienvenido;
 
-	public MainWindow(String mensaje) {
+	public MainWindow(Usuario usuario) {
 		setSize(790, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new GridBagLayout());
@@ -111,7 +111,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
-		lblBienvenido = new JLabel("Usuario	: "+mensaje);
+		lblBienvenido = new JLabel("Usuario	: "+ usuario.getNombre() + " " + usuario.getRol().getDescripcion());
 		gbc.gridy = 8;
 		add(lblBienvenido, gbc);
 	}
