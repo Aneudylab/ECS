@@ -67,7 +67,6 @@ public class DBManager {
         }
     }
 
-
     //---------------------------------------------------------------------------------------
     // Metodo que retorna un el resultado de realizar una consulta
     // @param Query
@@ -75,7 +74,6 @@ public class DBManager {
     // @return los resultados 
     // @throws Exception
     //---------------------------------------------------------------------------------------
-
     
     public static ResultSet ejecutarQuery(String query, Object[] parametros)throws Exception{
         stm = connection.prepareStatement(query);
@@ -91,15 +89,12 @@ public class DBManager {
 
     }
 
-
-
     //---------------------------------------------------------------------------------------
     // Metodo para ejecutar un insert o actualizacion
     // @param consulta es el Query
     // @param parametros Los parametros que tiene el Query, si los hay
     // @throws Exception
     //---------------------------------------------------------------------------------------
-    
 
     public static void ejecutarUpdate(String consulta, Object[] parametros) throws Exception{
         stm = connection.prepareStatement(consulta);
@@ -111,7 +106,6 @@ public class DBManager {
         }
 
         stm.executeUpdate();
-
     }
     
     //-----------------------------------------------------------------------------------------
@@ -141,8 +135,6 @@ public class DBManager {
         
         return id;
     }
-    
-    
 
     //-----------------------------------------------------
     // Metodo para abrir la conexion con la base de datos
@@ -158,14 +150,12 @@ public class DBManager {
         }
         return connection;
     }
-
     
     //-----------------------------------------------------
     // Metodo para cerrar la conexion con la Base De Datos
     //-----------------------------------------------------
     
     public static void closeDBConnection (){
-
         try {
             if(!connection.isClosed()){
                 connection.close();
@@ -175,8 +165,5 @@ public class DBManager {
             System.out.println(e.getMessage());
 
         }
-
     }
-
 }
-
