@@ -47,13 +47,13 @@ public class UsuarioDA {
 				
             }
             
-			return usr;
             // Manejo de excepcion
             // TODo: Que jairis la maneje bien
 
         }catch (Exception err) {
             System.out.println("Error: " + err.getMessage());
-		    return usr;
-		}
+        }finally{
+            return usr;
+        }
     }
 }
