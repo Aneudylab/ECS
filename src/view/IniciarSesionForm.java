@@ -127,7 +127,6 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	// Inner clase para poder iniciar sesion precionando la tecla enter
     protected class PresionarTecla extends KeyAdapter {
 
-
         public void keyPressed(KeyEvent ke) {
             if (ke.getKeyCode() == KeyEvent.VK_ENTER){
                 String usr = txtUsuario.getText();
@@ -142,21 +141,27 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
     {
         try {
             ControladorSesion controlador = new ControladorSesion();
-            controlador.iniciarSesion(usuario, clave);
+            controlador.iniciarSesion(txtUsuario.getText(), new String(
+                        txtClave.getPassword()));
 
-            if (ControladorSesion.usuarioActual == null) {
-                JOptionPane.showMessageDialog(null,
-                        "Yupi Clave o Password incorrecto,",
-                        "Error de acceso", JOptionPane.ERROR_MESSAGE);
-            } else {
-                MainWindow m = new MainWindow(ControladorSesion.usuarioActual.getNombre());
+            if (ControladorSesion.usuarioActual != null) {
+                MainWindow m = new MainWindow();
                 m.setVisible(true);
                 setVisible(false);
+            } else {
+                mostrarErrorLogin();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+	
+    //metodo que muestra el MessageDialog cuando existe un error
+	public void mostrarErrorLogin(){
+	    JOptionPane.showMessageDialog(null,
+						              "Usuario o Password incorrecto,",
+						               "Error de acceso", 
+									   JOptionPane.ERROR_MESSAGE);	
+	}
 }
-
