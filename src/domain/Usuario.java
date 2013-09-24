@@ -84,6 +84,14 @@ public class Usuario {
 		return rol;
 	}
 	
+	public String getRolDescripcion(){
+	   return rol.getDescripcion();
+	}
+	
+	public int getRolID(){
+	   return rol.getId();
+	}
+	
 	public void setID(int usuarioID2) {
 		usuarioID = usuarioID2;
 	}
