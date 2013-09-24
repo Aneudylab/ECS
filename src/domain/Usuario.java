@@ -20,10 +20,10 @@ public class Usuario {
 
 	public Usuario(){}
 	
-	public Usuario(String usu, String cla) {
+	public Usuario(String nombreUsu, String cla) {
 
 		usuarioID = 0;
-		nombreUsuario = usu;
+		nombreUsuario = nombreUsu;
 		clave = cla;
 		nombre = "N/A";
 		rol = null;
@@ -37,14 +37,28 @@ public class Usuario {
 		rol = usrRol;
 
 	}
-
-	public Usuario(String nombreUsu,String cla,String nom, Rol ro){
+	
+	public Usuario(int usrID,String nom,Rol usrRol){
+	    usuarioID = usrID;
+	    nombre = nom;
+		rol = usrRol;
+	}
+	
+	public Usuario(String nombreUsu,String cla,String nom,Rol usrRol){
  
        nombreUsuario = nombreUsu;
 	   clave = cla;
 	   nombre = nom;
-	   rol = rol;
+	   rol = usrRol;
     }	
+	
+	public Usuario(int usrID,String nombreUsu,String cla,String nom,Rol ro){
+	   usuarioID = usrID;
+	   nombreUsuario = nombreUsu;
+	   clave = cla;
+	   nombre = nom;
+	   rol = ro;
+	}
 		
 	// -----------------------------------------------------------------
 	// Setters y Getters
