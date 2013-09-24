@@ -112,22 +112,8 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evento) {
 
 		if (evento.getActionCommand() == INICIAR_SESION) {
-			try {
-				ControladorSesion controlador = new ControladorSesion();
-				controlador.iniciarSesion(txtUsuario.getText(), new String(
-											txtClave.getPassword()));
-
-				if (ControladorSesion.usuarioActual != null) {
-                    MainWindow m = new MainWindow();
-                    m.setVisible(true);
-					setVisible(false);
-				} else {
-					  	mostrarErrorLogin();
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			iniciarSesion(txtUsuario.getText(), new String(
+										txtClave.getPassword()));
 		}
 		if (evento.getActionCommand() == CANCELAR) {
 			System.exit(0);
@@ -140,28 +126,34 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 
 		public void keyPressed(KeyEvent ke) {
 			if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-				try {
-					ControladorSesion controlador = new ControladorSesion();
-					controlador.iniciarSesion(txtUsuario.getText(), new String(
-							txtClave.getPassword()));
-
-					if (ControladorSesion.usuarioActual != null) {
-                        MainWindow m = new MainWindow();
-                        m.setVisible(true);
-						setVisible(false);
-					} else {
-					  	mostrarErrorLogin();
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+              iniciarSesion(txtUsuario.getText(), new String(
+										txtClave.getPassword()));
 			}
 		}
 	}
 	
+	//metodo para iniciar session
+	private void iniciarSesion(String nombreUsuario, String clave){
+	    
+		try {
+			ControladorSesion controlador = new ControladorSesion();
+			controlador.iniciarSesion(nombreUsuario,clave);
+
+			if (ControladorSesion.usuarioActual != null) {
+                MainWindow m = new MainWindow();
+                m.setVisible(true);
+				setVisible(false);
+			} else {
+				mostrarErrorLogin();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
     //metodo que muestra el MessageDialog cuando existe un error
-	public void mostrarErrorLogin(){
+	private void mostrarErrorLogin(){
 	    JOptionPane.showMessageDialog(null,
 						              "Usuario o Password incorrecto,",
 						               "Error de acceso", 
