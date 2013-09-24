@@ -112,7 +112,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
-		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.usuarioActual.getNombre() + " " + ControladorSesion.usuarioActual.getRol().getDescripcion());
+		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.usuarioActual.getNombre() + " " + ControladorSesion.usuarioActual.getRolDescripcion());
 		gbc.gridy = 8;
 		add(lblBienvenido, gbc);
 	}
