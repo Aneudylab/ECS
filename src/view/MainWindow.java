@@ -122,10 +122,22 @@ public class MainWindow extends JFrame implements ActionListener {
 		// TODO Apéndice de método generado automáticamente
 		String comando = evento.getActionCommand();
 
+		
 		if (CREAR_PLANTILLA.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Crear Plantilla ", JOptionPane.INFORMATION_MESSAGE);
+		
+			if (ControladorSesion.ValidarEsAdministrador()){
+			
+			//Stub que representa la clase CrearPlantillaForm
+			JOptionPane.showMessageDialog(this, "Esta supuesto a aparecer CrearPlantillaForm","Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			else {
+			
+			JOptionPane.showMessageDialog(this, "Usted no tiene derecho a generar plantillas ","Acceso Restringido", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
 		}
+		
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
 					"Generar Reporte ", JOptionPane.INFORMATION_MESSAGE);
