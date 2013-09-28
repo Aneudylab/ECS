@@ -32,8 +32,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	// -----------------------------------------------------------------
 	// Atributos
 	// -----------------------------------------------------------------
-
-	private Usuario usuario;
+	
 	private PanelImagen panelImagen;
 	// -----------------------------------------------------------------
 	// Atributos de la Interfaz
@@ -112,7 +111,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
-		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.usuarioActual.getNombre() + " " + ControladorSesion.usuarioActual.getRol().getDescripcion());
+		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.usuarioActual.getNombre() + " " + ControladorSesion.usuarioActual.getRol());
 		gbc.gridy = 8;
 		add(lblBienvenido, gbc);
 	}
