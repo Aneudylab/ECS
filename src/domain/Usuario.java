@@ -80,12 +80,8 @@ public class Usuario {
 		return nombre;
 	}
 
-	public Rol getRol() {
-		return rol;
-	}
-	
-	public String getRolDescripcion(){
-	   return rol.getDescripcion();
+	public String getRol() {
+		 return rol.getDescripcion();
 	}
 	
 	public int getRolID(){
