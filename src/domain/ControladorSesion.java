@@ -43,4 +43,9 @@ public class ControladorSesion {
 		}
 	
 	}
+	
+	public Usuario getUsuarioActual(){
+	
+		return usuarioActual;
+	}
 }
