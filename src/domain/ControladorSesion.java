@@ -24,5 +24,16 @@ public class ControladorSesion {
 	public void setUsuarioActual(Usuario unUsr){
 	    usuarioActual = unUsr;
 	}	
-
+	
+	
+	// Metodo booleano que retorna True si el idRol es 1
+	public static boolean ValidarEsAdministrador(){
+        return usuarioActual.getRol().equals("Administrador") ;
+	}
+    
+	
+	public Usuario getUsuarioActual(){
+	
+		return usuarioActual;
+	}
 }
