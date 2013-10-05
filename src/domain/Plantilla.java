@@ -10,6 +10,9 @@ public class Plantilla{
     public Plantilla(ArrayList<String> listaPtosEv){
     }
 
+    void guardarPuntosEvaluacion(){
+    }
+
     public void setId(int id){
         plantillaId = id;
     }

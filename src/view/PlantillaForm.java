@@ -25,6 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import domain.ControladorPlantilla;
+
 public class PlantillaForm extends KeyAdapter implements
 		ActionListener {
 
@@ -49,32 +51,32 @@ public class PlantillaForm extends KeyAdapter implements
 	JButton btnX;
 
 	int contador = 1;
+    int plantillaId;
 	JScrollPane scrollpane;
 	JRadioButton si, no;
 	ButtonGroup radioGrupo;
 	// para dar espacio entre
-	// StatusBar statusBar = new StatusBar();
+	StatusBar statusBar = new StatusBar();
 	GridBagConstraints gbc = new GridBagConstraints();
 	CardLayout manejador;
 
 	// Metodos definidos en el diagrama de clases
 
-	public void crearNuevaPlantilla() {
-	}
+	public void crearNuevaPlantilla(ArrayList listaPreguntas) {
+        ControladorPlantilla unCPlant = new ControladorPlantilla();
+		 plantillaId = unCPlant.CrearPlantilla(listaPreguntas);
+		 
+		 JOptionPane.showMessageDialog(this, "Crear Plantilla",
+				"Se creó la plantilla: "+plantillaId, JOptionPane.INFORMATION_MESSAGE);
 
-	public void crearPuntoEvaluacion() {
 	}
-
-	public void guardarPlantilla() {
-	}
-
 	// ==================================
 
 	public PlantillaForm() {
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();
-		// construyePanelEstatus();
+		construyePanelEstatus();
 		construyeVentana();
 	}
 
@@ -82,7 +84,7 @@ public class PlantillaForm extends KeyAdapter implements
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();
-		// construyePanelEstatus();
+		construyePanelEstatus();
 		construyeVentana();
 	}
 
@@ -127,9 +129,9 @@ public class PlantillaForm extends KeyAdapter implements
 		scrollpane = new JScrollPane(panelInferior);
 		ventana.add(scrollpane);
 		ventana.add(panelOpciones);
-		// ventana.add(panelEstatus);
+		ventana.add(panelEstatus);
 		ventana.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-		ventana.setVisible(true);
+		//ventana.setVisible(true);
 		ventana.setLocationRelativeTo(null);
 		ventana.setResizable(false);
 	}
@@ -146,57 +148,58 @@ public class PlantillaForm extends KeyAdapter implements
 		btnX.setBackground(Color.WHITE);
 		btnX.setBorderPainted(false);
 		panelPregunta.setBackground(Color.WHITE);
-		// JOptionPane.showConfirmDialog(null, " "+listaPreguntas.size());
-        
-		lblContador = new JLabel(""+(listaPreguntas.size()));
-		//for (int i = 0; i < listaPreguntas.size(); i++) {
-		lblPregunta.add(new JLabel(") " + listaPreguntas.get(listaPreguntas.size()-1)));
-		panelPregunta.add(lblContador, BorderLayout.WEST);
-		panelPregunta.add(lblPregunta.get((lblPregunta.size() - 1)), BorderLayout.CENTER);
-		panelPregunta.add(btnX, BorderLayout.EAST);
-		//}
-		contador++;
-		// determinar el size del panel pregunta
 		panelPregunta.setPreferredSize(new Dimension(850, 40));
 		panelPregunta.setMaximumSize(new Dimension(950, 40));
 		panelPregunta.setMinimumSize(new Dimension(850, 40));
 
+		// JOptionPane.showConfirmDialog(null, " "+listaPreguntas.size());
+		//lblContador = new JLabel("" + listaPreguntas.size());
+		lblContador = new JLabel(" ** ");
+		
+
+		lblPregunta.add(new JLabel(" ) "
+				+ listaPreguntas.get(listaPreguntas.size() - 1)));
+		panelPregunta.add(lblContador, BorderLayout.WEST);
+		panelPregunta.add(lblPregunta.get((listaPreguntas.size() - 1)),
+				BorderLayout.CENTER);
+		panelPregunta.add(btnX, BorderLayout.EAST);
+
+		contador++;
+		// determinar el size del panel pregunta
+		statusBar.setMessage(""+ listaPreguntas.size());
 		panelInferior.add(panelPregunta);// Decendente FlowLayout.Left
 
 	}
 
 	private void organizarPreguntas() {
-
-		// listaPreguntas.removeAll(lblPregunta);
 		lblPregunta.clear();
-		//int count= panelPregunta.getComponentCount();
-        panelPregunta.removeAll();
-		panelInferior.removeAll();
-		for (int i = 0; i < listaPreguntas.size(); i++) {
-			JLabel tmpContador = new JLabel(""+(i+1));
-			
-			lblPregunta.add(new JLabel(") "+ listaPreguntas.get(listaPreguntas.size() - 1)));
-			panelPregunta.add(tmpContador, BorderLayout.WEST);
-			panelPregunta.add(lblPregunta.get((lblPregunta.size() - 1)),BorderLayout.CENTER);
-			panelPregunta.add(btnX, BorderLayout.EAST);
-		}
-		panelPregunta.setPreferredSize(new Dimension(850, 40));
-		panelPregunta.setMaximumSize(new Dimension(950, 40));
-		panelPregunta.setMinimumSize(new Dimension(850, 40));
-		panelInferior.add(panelPregunta);
+		panelPregunta.removeAll();
+	
+		//lblContador = new JLabel("" + listaPreguntas.size());
+		lblContador = new JLabel(" ** ");
 		
-		// ventana.paintAll(ventana.getGraphics());
+		for (int i = 0; i < listaPreguntas.size(); i++) {
+			lblPregunta.add(new JLabel("  )"
+					+ listaPreguntas.get(listaPreguntas.size() - 1)));
+			panelPregunta.add(lblContador, BorderLayout.WEST);
+			panelPregunta.add(lblPregunta.get((lblPregunta.size() - 1)),
+					BorderLayout.CENTER);
+			panelPregunta.add(btnX, BorderLayout.EAST);
+			
+		}
+		statusBar.setMessage(""+ listaPreguntas.size());
 	}
 
-	/*
-	 * public void construyePanelEstatus() { panelEstatus = new JPanel();
-	 * panelEstatus.setLayout(new FlowLayout(FlowLayout.LEFT));
-	 * panelEstatus.add(statusBar); panelEstatus.setPreferredSize(new
-	 * Dimension(900, 25)); panelEstatus.setMaximumSize(new Dimension(900, 25));
-	 * panelEstatus.setMinimumSize(new Dimension(900, 25));
-	 * 
-	 * }
-	 */
+	public void construyePanelEstatus() {
+		panelEstatus = new JPanel();
+		panelEstatus.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panelEstatus.add(statusBar);
+		panelEstatus.setPreferredSize(new Dimension(900, 25));
+		panelEstatus.setMaximumSize(new Dimension(900, 25));
+		panelEstatus.setMinimumSize(new Dimension(900, 25));
+
+	}
+
 	public void construyePanelOpciones() {
 		panelOpciones = new JPanel();
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
@@ -226,11 +229,6 @@ public class PlantillaForm extends KeyAdapter implements
 			listaPreguntas.add(pregunta);
 			construyePregunta();
 			txtPregunta.setText("");
-			// statusBar.setMessage("Cantidad :" + Integer.toString(contador -
-			// 1)
-			// + "   ");
-
-			
 		}
 	}
 
@@ -248,9 +246,6 @@ public class PlantillaForm extends KeyAdapter implements
 			eliminarPregunta(boton); // invocando el metodo
 										// eliminarPregunta tomando como
 										// argumento un JButton
-										
-			organizarPreguntas();
-		    ventana.paintAll(ventana.getGraphics());
 		}
 	}
 
@@ -275,12 +270,11 @@ public class PlantillaForm extends KeyAdapter implements
 				if (i instanceof JButton) { // verificar si es una instancia de
 											// un JButton
 					JButton boton2 = (JButton) i; // cast a un JButton
-					if (boton == boton2) { 	// Verificar si los botones son
+					if (boton == boton2) { // Verificar si los botones son
 											// iguales
-						listaPreguntas.remove(index);
 						panelInferior.remove(index);
-						
-						
+						listaPreguntas.remove(index);
+						organizarPreguntas();
 					}
 				}
 			}
@@ -288,11 +282,10 @@ public class PlantillaForm extends KeyAdapter implements
 			index++;
 		}
 
-	
+		ventana.paintAll(ventana.getGraphics());
 	}
-	
 	public void mostrar(){
-	  this.setVisible();
+		ventana.setVisible(true);
 	}
-
+	
 }
