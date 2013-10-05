@@ -162,6 +162,11 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	    JOptionPane.showMessageDialog(null,
 						              "Usuario o Password incorrecto,",
 						               "Error de acceso", 
-									   JOptionPane.ERROR_MESSAGE);	
+									   JOptionPane.ERROR_MESSAGE);
+         
+        txtUsuario.setText("");
+		txtClave.setText(""); 
+		txtUsuario.requestFocusInWindow();
+		
 	}
 }

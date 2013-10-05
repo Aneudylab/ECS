@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 
 import domain.Usuario;
 import domain.ControladorSesion;
+import domain.ControladorPlantilla;
+
 
 public class MainWindow extends JFrame implements ActionListener {
 
@@ -122,8 +124,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		String comando = evento.getActionCommand();
 
 		if (CREAR_PLANTILLA.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Crear Plantilla ", JOptionPane.INFORMATION_MESSAGE);
+			CrearNuevaPlantilla();
 		}
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
@@ -147,5 +148,25 @@ public class MainWindow extends JFrame implements ActionListener {
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
+	}
+	
+	private void CrearNuevaPlantilla (){
+	   
+	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
+	   
+	   if(esAdmin){
+	      PlantillaForm plantilla = new PlantillaForm(idUsuario);
+		  ocultar();
+	   }
+	   else{
+	      JOptionPane.showMessageDialog(null,
+						              "Usted no tiene privilegios para crear plantilla",
+						               "Usuario sin privilegio", 
+									   JOptionPane.ERROR_MESSAGE);	
+	   }
+	}
+	
+	private void ocultar(){
+	   this.setVisible(false);
 	}
 }

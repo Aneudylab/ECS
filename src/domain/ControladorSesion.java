@@ -23,6 +23,6 @@ public class ControladorSesion {
 	//metodo de establecer el usuario
 	public void setUsuarioActual(Usuario unUsr){
 	    usuarioActual = unUsr;
-	}	
+	}
 
 }
