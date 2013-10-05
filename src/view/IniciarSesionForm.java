@@ -141,16 +141,22 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
     {
         try {
             ControladorSesion controlador = new ControladorSesion();
-            controlador.iniciarSesion(txtUsuario.getText(), new String(
-                        txtClave.getPassword()));
-
-            if (ControladorSesion.usuarioActual != null) {
-                MainWindow m = new MainWindow();
-                m.setVisible(true);
-                setVisible(false);
-            } else {
-                mostrarErrorLogin();
-            }
+            controlador.iniciarSesion(usuario, clave);
+            
+            if ( usuario.equals("") && clave.equals("") ){	
+	         mostrarErrorLogin("Los campos estan vacios");
+	    }else if ( usuario.equals("") ){
+                 mostrarErrorLogin("El campo nombre esta vacio");
+            }else if ( clave.equals("") ){
+		 mostrarErrorLogin("El campo clave esta vacio");
+            }else if ( ControladorSesion.usuarioActual == null ) {
+	         mostrarErrorLogin("Usuario o Password incorrecto");
+            }else {
+		 MainWindow m = new MainWindow();
+	         m.mostrar();
+		 this.ocultar();
+				
+	     } 
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,6 +173,20 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
         txtUsuario.setText("");
 		txtClave.setText(""); 
 		txtUsuario.requestFocusInWindow();
-		
+    }	
+
+    /**
+     * @Deprecated Use la de eric
+     * */
+    @Deprecated
+	public void mostrarErrorLogin( String mensaje){
+	    JOptionPane.showMessageDialog(null, mensaje,"Error de acceso", 
+					 JOptionPane.ERROR_MESSAGE);	
+	}
+	
+	
+	// metodo para ocultar la ventana activa
+	public void ocultar(){
+		this.setVisible(false);
 	}
 }

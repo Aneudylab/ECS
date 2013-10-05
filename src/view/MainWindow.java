@@ -120,12 +120,14 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		// TODO Apéndice de método generado automáticamente
+		// TODO Apï¿½ndice de mï¿½todo generado automï¿½ticamente
 		String comando = evento.getActionCommand();
 
+		
 		if (CREAR_PLANTILLA.equals(comando)) {
 			CrearNuevaPlantilla();
 		}
+		
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
 					"Generar Reporte ", JOptionPane.INFORMATION_MESSAGE);
@@ -168,5 +170,9 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	private void ocultar(){
 	   this.setVisible(false);
+    }
+	// Metodo que hace visible la ventana principal
+	public void mostrar(){
+	   this.setVisible(true);
 	}
 }
