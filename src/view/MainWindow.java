@@ -123,7 +123,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		if (CREAR_PLANTILLA.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Crear Plantilla ", JOptionPane.INFORMATION_MESSAGE);
+				"Crear Plantilla ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
