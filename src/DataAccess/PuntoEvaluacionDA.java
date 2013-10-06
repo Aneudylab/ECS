@@ -14,7 +14,7 @@ public class PuntoEvaluacionDA {
 	// Metodo que guarda los puntos de evaluacion en la DB
 	//------------------------------------------------------------------
 	
-	void guardarPunto(int idPlantilla, int idPunto, String descripcion){
+	public void guardarPunto(int idPlantilla, int idPunto, String descripcion){
 								
         Object[] parametros;
         String query = "INSERT INTO punto_evaluacion( " +
