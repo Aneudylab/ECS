@@ -63,10 +63,10 @@ public class PlantillaForm extends KeyAdapter implements
 	// Metodos definidos en el diagrama de clases
 
 	public void crearNuevaPlantilla(ArrayList listaPreguntas) {
-        ControladorPlantilla unCPlant = new ControladorPlantilla();
-		 plantillaId = unCPlant.CrearPlantilla(listaPreguntas);
+        ControladorPlantilla unaPlantilla = new ControladorPlantilla();
+		int plantillaId = unCPlant.CrearPlantilla(listaPreguntas);
 		 
-		 JOptionPane.showMessageDialog(this, "Crear Plantilla",
+		 JOptionPane.showMessageDialog(null, "Crear Plantilla",
 				"Se creó la plantilla: "+plantillaId, JOptionPane.INFORMATION_MESSAGE);
 
 	}
