@@ -13,6 +13,7 @@ public class ControladorPlantilla{
 	//usuario administrador
 	public int crearPlantilla (ArrayList<String> puntos){
 	 
+	 //conversion temporar a de usuario a administrador
 	  Administrador unAdmin = ControladorSesion.usuarioActual;
 	  int id = unAdmin.crearPlantilla(puntos);
 	  return id;
