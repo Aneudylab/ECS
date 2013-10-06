@@ -30,48 +30,45 @@ import domain.ControladorPlantilla;
 public class PlantillaForm extends KeyAdapter implements
 		ActionListener {
 
-	// paneles
-	JFrame ventana;
-	JPanel panelSuperior;
-	JPanel panelInferior;
-	JPanel panelPregunta;
-	JPanel panelEstatus;
-	JPanel panelOpciones;
+	// -----------------------------------------------------------------
+	// Constantes
+	// -----------------------------------------------------------------
+	private static final String CANCELAR = "cancelar";
+	private static final String GUARDAR = "guardar";
+	private static final String AGREGAR = "agregar";
+	
+	// -----------------------------------------------------------------
+	// Componentes 
+	// -----------------------------------------------------------------
+	private JFrame ventana;
+	private JPanel panelSuperior;
+	private JPanel panelInferior;
+	private JPanel panelPregunta;
+	private JPanel panelEstatus;
+	private JPanel panelOpciones;
+	private JLabel lbletiquetaSuperior;
+	private JLabel lbletiquetaInferior;
+	private JLabel lblContador;
+	private JTextField txtPregunta;
+	private JButton btnAgregar;
+	private JButton btnGuardar;
+	private JButton btnCancelar;
+	private JButton btnX;
+	private JScrollPane scrollpane;
+	private StatusBar statusBar = new StatusBar();
+	private CardLayout manejador;
 
-	JLabel lbletiquetaSuperior;
-	JLabel lbletiquetaInferior;
-	JLabel lblContador;
-	ArrayList<JLabel> lblPregunta = new ArrayList<JLabel>();
-	String pregunta;
-	ArrayList<String> listaPreguntas = new ArrayList<String>();//
-	JTextField txtPregunta;
-	JButton btnAgregar;
-	JButton btnGuardar;
-	JButton btnCancelar;
-	JButton btnX;
-
-	int contador = 1;
-    int plantillaId;
-	JScrollPane scrollpane;
-	JRadioButton si, no;
-	ButtonGroup radioGrupo;
-	// para dar espacio entre
-	StatusBar statusBar = new StatusBar();
-	GridBagConstraints gbc = new GridBagConstraints();
-	CardLayout manejador;
-
-	// Metodos definidos en el diagrama de clases
-
-	public void crearNuevaPlantilla(ArrayList listaPreguntas) {
-        ControladorPlantilla unaPlantilla = new ControladorPlantilla();
-		int plantillaId = unCPlant.CrearPlantilla(listaPreguntas);
-		 
-		 JOptionPane.showMessageDialog(null, "Crear Plantilla",
-				"Se creó la plantilla: "+plantillaId, JOptionPane.INFORMATION_MESSAGE);
-
-	}
-	// ==================================
-
+	// -----------------------------------------------------------------
+	// Atributos
+	// -----------------------------------------------------------------
+	private ArrayList<JLabel> lblPregunta = new ArrayList<JLabel>();
+	private String pregunta;
+	private ArrayList<String> listaPreguntas = new ArrayList<String>();
+    private int plantillaId;
+	
+	// -----------------------------------------------------------------
+	// Constructores
+	// -----------------------------------------------------------------
 	public PlantillaForm() {
 		construyePanelSuperior();
 		construyePanelInferior();
@@ -88,6 +85,9 @@ public class PlantillaForm extends KeyAdapter implements
 		construyeVentana();
 	}
 
+	// -----------------------------------------------------------------
+	// Metodos del Formulario
+	// -----------------------------------------------------------------
 	public void construyePanelSuperior() {
 		lbletiquetaSuperior = new JLabel("Pregunta	 : ");
 		panelSuperior = new JPanel();
@@ -99,7 +99,7 @@ public class PlantillaForm extends KeyAdapter implements
 		panelSuperior.setLayout(new FlowLayout());
 		panelSuperior.add(lbletiquetaSuperior);
 		panelSuperior.add(txtPregunta);
-		btnAgregar.setActionCommand("ADD");
+		btnAgregar.setActionCommand(AGREGAR);
 		btnAgregar.addActionListener(this);
 		panelSuperior.add(btnAgregar);
 		// Determinar el tamaño del panel
@@ -113,7 +113,6 @@ public class PlantillaForm extends KeyAdapter implements
 		panelInferior
 				.setBorder(BorderFactory.createTitledBorder("Preguntas  "));
 		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.Y_AXIS));
-		// panelInferior.setLayout(new FlowLayout(FlowLayout.LEADING));
 		panelInferior.setBackground(Color.WHITE);
 		panelInferior.setSize(873, 506);
 
@@ -151,43 +150,18 @@ public class PlantillaForm extends KeyAdapter implements
 		panelPregunta.setPreferredSize(new Dimension(850, 40));
 		panelPregunta.setMaximumSize(new Dimension(950, 40));
 		panelPregunta.setMinimumSize(new Dimension(850, 40));
-
-		// JOptionPane.showConfirmDialog(null, " "+listaPreguntas.size());
-		//lblContador = new JLabel("" + listaPreguntas.size());
-		lblContador = new JLabel(" ** ");
 		
-
-		lblPregunta.add(new JLabel(" ) "
-				+ listaPreguntas.get(listaPreguntas.size() - 1)));
+		lblContador = new JLabel(" ¿ ");
+		lblPregunta.add(new JLabel(listaPreguntas.get(listaPreguntas.size() - 1)+" ?"));
 		panelPregunta.add(lblContador, BorderLayout.WEST);
 		panelPregunta.add(lblPregunta.get((listaPreguntas.size() - 1)),
 				BorderLayout.CENTER);
 		panelPregunta.add(btnX, BorderLayout.EAST);
-
-		contador++;
+		
 		// determinar el size del panel pregunta
 		statusBar.setMessage(""+ listaPreguntas.size());
 		panelInferior.add(panelPregunta);// Decendente FlowLayout.Left
 
-	}
-
-	private void organizarPreguntas() {
-		lblPregunta.clear();
-		panelPregunta.removeAll();
-	
-		//lblContador = new JLabel("" + listaPreguntas.size());
-		lblContador = new JLabel(" ** ");
-		
-		for (int i = 0; i < listaPreguntas.size(); i++) {
-			lblPregunta.add(new JLabel("  )"
-					+ listaPreguntas.get(listaPreguntas.size() - 1)));
-			panelPregunta.add(lblContador, BorderLayout.WEST);
-			panelPregunta.add(lblPregunta.get((lblPregunta.size() - 1)),
-					BorderLayout.CENTER);
-			panelPregunta.add(btnX, BorderLayout.EAST);
-			
-		}
-		statusBar.setMessage(""+ listaPreguntas.size());
 	}
 
 	public void construyePanelEstatus() {
@@ -207,9 +181,8 @@ public class PlantillaForm extends KeyAdapter implements
 		flow.setHgap(150);
 		btnCancelar = new JButton("    Cancelar       ");
 		btnGuardar = new JButton("    Guardar       ");
-		// agregar escuchas
-		btnGuardar.setActionCommand("GUARDAR");
-		btnCancelar.setActionCommand("CANCELAR");
+		btnGuardar.setActionCommand(GUARDAR);
+		btnCancelar.setActionCommand(CANCELAR);
 		btnGuardar.addActionListener(this);
 		btnCancelar.addActionListener(this);
 		panelOpciones.add(btnGuardar);
@@ -218,23 +191,10 @@ public class PlantillaForm extends KeyAdapter implements
 		panelOpciones.setMaximumSize(new Dimension(900, 50));
 		panelOpciones.setMinimumSize(new Dimension(900, 50));
 	}
-
-	public void escribirPregunta() {
-		if (txtPregunta.getText().equals("")) {
-			JOptionPane.showMessageDialog(null,
-					"Primero escriba.. luego presione, simple eh!", "Mensaje",
-					JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			pregunta = txtPregunta.getText();
-			listaPreguntas.add(pregunta);
-			construyePregunta();
-			txtPregunta.setText("");
-		}
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "ADD") {
+		if (e.getActionCommand() == AGREGAR) {
 
 			escribirPregunta();
 		}
@@ -247,6 +207,15 @@ public class PlantillaForm extends KeyAdapter implements
 										// eliminarPregunta tomando como
 										// argumento un JButton
 		}
+		if(e.getActionCommand() == CANCELAR){
+			cancelar();
+		}
+		if(e.getActionCommand() == GUARDAR){
+			JOptionPane.showMessageDialog(null,
+					"Aun  en construccion ","Mensaje",
+					JOptionPane.INFORMATION_MESSAGE);
+			//crearNuevaPlantilla(listaPreguntas); en construccion 
+		}
 	}
 
 	public void keyPressed(KeyEvent ke) {
@@ -255,6 +224,37 @@ public class PlantillaForm extends KeyAdapter implements
 			escribirPregunta();
 			ventana.paintAll(ventana.getGraphics());
 		}
+	}
+	
+	public void escribirPregunta() {
+		if (txtPregunta.getText().equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"Primero escriba.. luego presione, simple eh!", "Mensaje",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			pregunta = txtPregunta.getText();
+			listaPreguntas.add(pregunta);
+			construyePregunta();
+			txtPregunta.setText("");
+		}
+	}
+	
+	private void organizarPreguntas() {
+		lblPregunta.clear();
+		panelPregunta.removeAll();
+	
+		//lblContador = new JLabel("" + listaPreguntas.size());
+		lblContador = new JLabel(" ¿ ");
+		
+		for (int i = 0; i < listaPreguntas.size(); i++) {
+			lblPregunta.add(new JLabel(listaPreguntas.get(listaPreguntas.size() - 1)+" ?"));
+			panelPregunta.add(lblContador, BorderLayout.WEST);
+			panelPregunta.add(lblPregunta.get((lblPregunta.size() - 1)),
+					BorderLayout.CENTER);
+			panelPregunta.add(btnX, BorderLayout.EAST);
+			
+		}
+		statusBar.setMessage(""+ listaPreguntas.size());
 	}
 
 	private void eliminarPregunta(JButton boton) {
@@ -283,6 +283,25 @@ public class PlantillaForm extends KeyAdapter implements
 		}
 
 		ventana.paintAll(ventana.getGraphics());
+	}
+	private void cancelar(){
+		//listaPreguntas.clear();
+		ventana.setVisible(false);
+		MainWindow main = new MainWindow();
+		main.mostrar();
+	}
+	
+	// -----------------------------------------------------------------
+	// Metodos definidos en el diagrama de clases
+	// -----------------------------------------------------------------
+	
+	public void crearNuevaPlantilla(ArrayList<String> listaPreguntas) {
+        ControladorPlantilla unaPlantilla = new ControladorPlantilla();
+		int plantillaId = unaPlantilla.crearPlantilla(listaPreguntas);
+			 
+		 JOptionPane.showMessageDialog(null, "Crear Plantilla",
+				"Se creó la plantilla: "+plantillaId, JOptionPane.INFORMATION_MESSAGE);
+
 	}
 	public void mostrar(){
 		ventana.setVisible(true);

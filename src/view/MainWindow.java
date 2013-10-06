@@ -123,7 +123,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		String comando = evento.getActionCommand();
 
-		
 		if (CREAR_PLANTILLA.equals(comando)) {
 			CrearNuevaPlantilla();
 		}
@@ -157,7 +156,8 @@ public class MainWindow extends JFrame implements ActionListener {
 	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
 	   
 	   if(esAdmin){
-	      PlantillaForm plantilla = new PlantillaForm(idUsuario);
+	      PlantillaForm plantilla = new PlantillaForm(ControladorSesion.usuarioActual.getID());
+		  plantilla.mostrar();
 		  ocultar();
 	   }
 	   else{

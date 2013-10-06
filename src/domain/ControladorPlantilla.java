@@ -1,7 +1,6 @@
 
 package domain;
 
-
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import view.PlantillaForm;
@@ -14,7 +13,7 @@ public class ControladorPlantilla{
 	public int crearPlantilla (ArrayList<String> puntos){
 	 
 	 //conversion temporar a de usuario a administrador
-	  Administrador unAdmin = ControladorSesion.usuarioActual;
+	  Administrador unAdmin = (Administrador) ControladorSesion.usuarioActual;
 	  int id = unAdmin.crearPlantilla(puntos);
 	  return id;
 	
