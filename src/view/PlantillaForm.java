@@ -120,7 +120,7 @@ public class PlantillaForm extends KeyAdapter implements
 
 	public void construyeVentana() {
 		ventana = new JFrame();
-		ventana.setTitle("Crear de Plantilla ");
+		ventana.setTitle("Crear Plantilla ");
 		ventana.setSize(900, 600);
 		ventana.setLayout(new BoxLayout(ventana.getContentPane(),
 				BoxLayout.Y_AXIS));
