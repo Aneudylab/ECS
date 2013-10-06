@@ -2,9 +2,10 @@
 
 package domain;
 
-
 import java.util.Date;
 import java.util.ArrayList;
+import DataAccess.PuntoEvaluacionDA;
+
 
 
 public class Plantilla{
@@ -24,31 +25,49 @@ public class Plantilla{
    }
    
    public Plantilla(ArrayList<String> listaPtosEv){
-     
 	 int num = 1;
 	 listaPtoEva = new ArrayList<PuntoEvaluacion>();
-	 for (String tmpPunto; listaPtosEv){
+	 for (String tmpPunto: listaPtosEv){
 	    CrearPuntoEvaluacion(num++, tmpPunto);
 	 }
     
    }
    
-   ////////////////////////////
-   // Metodos de la clase
-   ////////////////////////////
-   
-   private void CrearPuntoEvaluacion(int num, String punto){
-      PuntoEvaluacion puntoEva = new PuntoEvaluacion(num,punto);
-	  listaPtoEva.add(puntoEva);
-   
+   ///////////////////////////////////
+   // Metodos getters y setters
+  ////////////////////////////////////
+  
+   public int getId(){
+    return plantillaid;
    }
    
    public void setId (int tmpID){
       plantillaid = tmpID;
    }
    
-   void GuardarPuntosEvaluacion(){
+   /////////////////////////////////
+   //Otros metodos
+   //////////////////////////////////
+   
+   private void CrearPuntoEvaluacion(int num, String punto){
+      PuntoEvaluacion puntoEva = new PuntoEvaluacion(num,punto);
+	  listaPtoEva.add(puntoEva);
+   
+   }
+
+   public void GuardarPuntosEvaluacion(){
      
+	   PuntoEvaluacionDA guardarPuntoEva = new PuntoEvaluacionDA();
+	 
+	   for (PuntoEvaluacion tmpPuntoEva: listaPtoEva){
+
+  	      String desc = tmpPuntoEva.getDescripcion();
+		  int idPto = tmpPuntoEva.getId();
+
+	      guardarPuntoEva.guardarPunto(plantillaid, idPto, desc);
+	 
+	    }
+	 
    }
    
 }
