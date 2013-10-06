@@ -55,19 +55,20 @@ public class Plantilla{
    
    }
 
-   public void GuardarPuntosEvaluacion(){
-     
-	   PuntoEvaluacionDA guardarPuntoEva = new PuntoEvaluacionDA();
-	 
-	   for (PuntoEvaluacion tmpPuntoEva: listaPtoEva){
+   public void guardarPuntosEvaluacion(){
 
-  	      String desc = tmpPuntoEva.getDescripcion();
-		  int idPto = tmpPuntoEva.getId();
+       PuntoEvaluacionDA guardarPuntoEva = new PuntoEvaluacionDA();
 
-	      guardarPuntoEva.guardarPunto(plantillaid, idPto, desc);
-	 
-	    }
-	 
+       for (PuntoEvaluacion tmpPuntoEva: listaPtoEva){
+
+           String desc = tmpPuntoEva.getDescripcion();
+           int idPto = tmpPuntoEva.getId();
+
+
+           guardarPuntoEva.guardarPunto(plantillaid, idPto, desc);
+
+       }
+
    }
    
 }

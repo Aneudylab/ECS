@@ -164,6 +164,21 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
     }
 	
     //metodo que muestra el MessageDialog cuando existe un error
+	public void mostrarErrorLogin(){
+	    JOptionPane.showMessageDialog(null,
+						              "Usuario o Password incorrecto,",
+						               "Error de acceso", 
+									   JOptionPane.ERROR_MESSAGE);
+         
+        txtUsuario.setText("");
+		txtClave.setText(""); 
+		txtUsuario.requestFocusInWindow();
+    }	
+
+    /**
+     * @Deprecated Use la de eric
+     * */
+    @Deprecated
 	public void mostrarErrorLogin( String mensaje){
 	    JOptionPane.showMessageDialog(null, mensaje,"Error de acceso", 
 					 JOptionPane.ERROR_MESSAGE);	

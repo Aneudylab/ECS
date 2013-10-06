@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 
 import domain.Usuario;
 import domain.ControladorSesion;
+import domain.ControladorPlantilla;
+
 
 public class MainWindow extends JFrame implements ActionListener {
 
@@ -121,20 +123,8 @@ public class MainWindow extends JFrame implements ActionListener {
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		String comando = evento.getActionCommand();
 
-		
 		if (CREAR_PLANTILLA.equals(comando)) {
-		
-			if (ControladorSesion.ValidarEsAdministrador()){
-			
-			//Stub que representa la clase CrearPlantillaForm
-			JOptionPane.showMessageDialog(this, "Esta supuesto a aparecer CrearPlantillaForm","Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
-			else {
-			
-			JOptionPane.showMessageDialog(this, "Usted no tiene derecho a generar plantillas ","Acceso Restringido", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
+			CrearNuevaPlantilla();
 		}
 		
 		if (GENERAR_REPORTE.equals(comando)) {
@@ -161,7 +151,26 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	}
 	
+	private void CrearNuevaPlantilla (){
+	   
+	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
+	   
+	   if(esAdmin){
+	      PlantillaForm plantilla = new PlantillaForm(ControladorSesion.usuarioActual.getID());
+		  plantilla.mostrar();
+		  ocultar();
+	   }
+	   else{
+	      JOptionPane.showMessageDialog(null,
+						              "Usted no tiene privilegios para crear plantilla",
+						               "Usuario sin privilegio", 
+									   JOptionPane.ERROR_MESSAGE);	
+	   }
+	}
 	
+	private void ocultar(){
+	   this.setVisible(false);
+    }
 	// Metodo que hace visible la ventana principal
 	public void mostrar(){
 	   this.setVisible(true);
