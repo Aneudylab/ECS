@@ -283,9 +283,7 @@ public class PlantillaForm extends KeyAdapter implements
 	}
 	private void cancelar(){
 		//listaPreguntas.clear();
-		ventana.setVisible(false);
-		MainWindow main = new MainWindow();
-		main.mostrar();
+        ocultar();
 	}
 	
 	// -----------------------------------------------------------------
@@ -299,9 +297,15 @@ public class PlantillaForm extends KeyAdapter implements
 		 JOptionPane.showMessageDialog(null, "Se creó la plantilla: "+plantillaId,
                          "Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
 
+         ocultar();
 	}
 	public void mostrar(){
 		ventana.setVisible(true);
 	}
 	
+    private void ocultar(){
+		ventana.setVisible(false);
+		MainWindow main = new MainWindow();
+		main.mostrar();
+    }
 }
