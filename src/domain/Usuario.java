@@ -100,4 +100,11 @@ public class Usuario {
 	   rol = rol2;
 	}
 
+   /////////////////////////////////
+   //Otros metodos
+   //////////////////////////////////
+    public void copiar(Usuario usr){
+        usuarioID = usr.getID();
+        nombre = usr.getNombre();
+    }
 }
