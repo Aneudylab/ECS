@@ -211,10 +211,7 @@ public class PlantillaForm extends KeyAdapter implements
 			cancelar();
 		}
 		if(e.getActionCommand() == GUARDAR){
-			JOptionPane.showMessageDialog(null,
-					"Aun  en construccion ","Mensaje",
-					JOptionPane.INFORMATION_MESSAGE);
-			//crearNuevaPlantilla(listaPreguntas); en construccion 
+			crearNuevaPlantilla(listaPreguntas); // en construccion 
 		}
 	}
 
