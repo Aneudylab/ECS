@@ -296,8 +296,8 @@ public class PlantillaForm extends KeyAdapter implements
         ControladorPlantilla unaPlantilla = new ControladorPlantilla();
 		int plantillaId = unaPlantilla.crearPlantilla(listaPreguntas);
 			 
-		 JOptionPane.showMessageDialog(null, "Crear Plantilla",
-				"Se creó la plantilla: "+plantillaId, JOptionPane.INFORMATION_MESSAGE);
+		 JOptionPane.showMessageDialog(null, "Se creó la plantilla: "+plantillaId,
+                         "Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 	public void mostrar(){
