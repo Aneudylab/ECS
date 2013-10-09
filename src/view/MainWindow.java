@@ -156,7 +156,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
 	   
 	   if(esAdmin){
-	      PlantillaForm plantilla = new PlantillaForm(ControladorSesion.usuarioActual.getID());
+	      CrearPlantillaForm plantilla = new CrearPlantillaForm(ControladorSesion.usuarioActual.getID());
 		  plantilla.mostrar();
 		  ocultar();
 	   }

@@ -27,7 +27,7 @@ import javax.swing.WindowConstants;
 
 import domain.ControladorPlantilla;
 
-public class PlantillaForm extends KeyAdapter implements
+public class CrearPlantillaForm extends KeyAdapter implements
 		ActionListener {
 
 	// -----------------------------------------------------------------
@@ -69,7 +69,7 @@ public class PlantillaForm extends KeyAdapter implements
 	// -----------------------------------------------------------------
 	// Constructores
 	// -----------------------------------------------------------------
-	public PlantillaForm() {
+	public CrearPlantillaForm() {
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();
@@ -77,7 +77,7 @@ public class PlantillaForm extends KeyAdapter implements
 		construyeVentana();
 	}
 
-	public PlantillaForm(int idUsuario) {
+	public CrearPlantillaForm(int idUsuario) {
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();

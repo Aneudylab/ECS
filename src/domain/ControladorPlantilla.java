@@ -3,7 +3,7 @@ package domain;
 
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import view.PlantillaForm;
+import view.CrearPlantillaForm;
 
 public class ControladorPlantilla{
 
