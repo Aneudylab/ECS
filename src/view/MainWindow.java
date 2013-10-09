@@ -113,7 +113,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
-		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.usuarioActual.getNombre() + " " + ControladorSesion.usuarioActual.getRol());
+		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.getUsuarioActual().getNombre() + " " + ControladorSesion.getUsuarioActual().getRol());
 		gbc.gridy = 8;
 		add(lblBienvenido, gbc);
 	}
@@ -156,7 +156,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
 	   
 	   if(esAdmin){
-	      CrearPlantillaForm plantilla = new CrearPlantillaForm(ControladorSesion.usuarioActual.getID());
+	      CrearPlantillaForm plantilla = new CrearPlantillaForm(ControladorSesion.getUsuarioActual().getID());
 		  plantilla.mostrar();
 		  ocultar();
 	   }

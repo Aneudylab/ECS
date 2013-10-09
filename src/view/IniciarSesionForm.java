@@ -149,7 +149,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
                  mostrarErrorLogin("El campo nombre esta vacio");
             }else if ( clave.equals("") ){
 		 mostrarErrorLogin("El campo clave esta vacio");
-            }else if ( ControladorSesion.usuarioActual == null ) {
+            }else if ( ControladorSesion.getUsuarioActual() == null ) {
 	         mostrarErrorLogin("Usuario o Password incorrecto");
             }else {
 		 MainWindow m = new MainWindow();

@@ -3,11 +3,11 @@ package domain;
 import javax.swing.JOptionPane;
 
 import DataAccess.UsuarioDA;
-import view.MainWindow;
+//import view.MainWindow;
 
 public class ControladorSesion {
 
-    public static Usuario usuarioActual;
+    private static Usuario usuarioActual;
 
 	public void iniciarSesion(String nombreUsr, String clave) {
 
@@ -31,7 +31,7 @@ public class ControladorSesion {
 	}
     
 	
-	public Usuario getUsuarioActual(){
+	public static Usuario getUsuarioActual(){
 		return usuarioActual;
 	}
 }
