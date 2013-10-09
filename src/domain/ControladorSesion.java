@@ -1,9 +1,6 @@
 package domain;
 
-import javax.swing.JOptionPane;
-
 import DataAccess.UsuarioDA;
-//import view.MainWindow;
 
 public class ControladorSesion {
 
@@ -16,7 +13,7 @@ public class ControladorSesion {
         Usuario unUsuario = usuarioDA.leerUsuario(nombreUsr,clave);
 
         if(unUsuario != null){
-           setUsuarioActual(unUsuario);
+            setUsuarioActual(unUsuario);
 		}
 	}
 	
