@@ -48,7 +48,15 @@ public class MainWindow extends JFrame implements ActionListener {
 	private JButton btnCrearUsuarios;
 	private JLabel 	lblBienvenido;
 
+	// -----------------------------------------------------------------
+	// Controladores
+	// -----------------------------------------------------------------
+    private ControladorSesion cSesion;
+
 	public MainWindow() {
+        // Controlador
+        cSesion = new ControladorSesion();
+
 		setSize(790, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new GridBagLayout());
@@ -113,7 +121,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
-		lblBienvenido = new JLabel("Usuario	: "+ ControladorSesion.getUsuarioActual().getNombre() + " " + ControladorSesion.getUsuarioActual().getRol());
+		lblBienvenido = new JLabel("Usuario	: "+ cSesion.getUsuarioActual().getNombre() + " " + cSesion.getUsuarioActual().getRol());
 		gbc.gridy = 8;
 		add(lblBienvenido, gbc);
 	}
@@ -153,10 +161,10 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	private void CrearNuevaPlantilla (){
 	   
-	   boolean esAdmin = ControladorSesion.validarEsAdministrador();
+	   boolean esAdmin = cSesion.validarEsAdministrador();
 	   
 	   if(esAdmin){
-	      CrearPlantillaForm plantilla = new CrearPlantillaForm(ControladorSesion.getUsuarioActual().getID());
+	      CrearPlantillaForm plantilla = new CrearPlantillaForm(cSesion.getUsuarioActual().getID());
 		  plantilla.mostrar();
 		  ocultar();
 	   }

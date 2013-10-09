@@ -65,11 +65,17 @@ public class CrearPlantillaForm extends KeyAdapter implements
 	private String pregunta;
 	private ArrayList<String> listaPreguntas = new ArrayList<String>();
     private int plantillaId;
+
+	// -----------------------------------------------------------------
+	// Controladores
+	// -----------------------------------------------------------------
+    ControladorPlantilla cPlantilla = new ControladorPlantilla();
 	
 	// -----------------------------------------------------------------
 	// Constructores
 	// -----------------------------------------------------------------
 	public CrearPlantillaForm() {
+        cPlantilla = new ControladorPlantilla();
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();
@@ -78,6 +84,7 @@ public class CrearPlantillaForm extends KeyAdapter implements
 	}
 
 	public CrearPlantillaForm(int idUsuario) {
+        cPlantilla = new ControladorPlantilla();
 		construyePanelSuperior();
 		construyePanelInferior();
 		construyePanelOpciones();
@@ -291,8 +298,7 @@ public class CrearPlantillaForm extends KeyAdapter implements
 	// -----------------------------------------------------------------
 	
 	public void crearNuevaPlantilla(ArrayList<String> listaPreguntas) {
-        ControladorPlantilla unaPlantilla = new ControladorPlantilla();
-		int plantillaId = unaPlantilla.crearPlantilla(listaPreguntas);
+		int plantillaId = cPlantilla.crearPlantilla(listaPreguntas);
 			 
 		 JOptionPane.showMessageDialog(null, "Se creó la plantilla: "+plantillaId,
                          "Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);

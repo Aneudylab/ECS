@@ -47,6 +47,11 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	private JButton btnCancelar;
 
 	// -----------------------------------------------------------------
+	// Controladores
+	// -----------------------------------------------------------------
+    ControladorSesion cSesion;
+
+	// -----------------------------------------------------------------
 	// Constructores
 	// -----------------------------------------------------------------
 
@@ -55,6 +60,9 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
 	 */
 	public IniciarSesionForm() {
 		super("Inicar Sesion");
+
+        cSesion = new ControladorSesion();
+
 		setSize(400, 150);
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,8 +148,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
     private void IniciarSesion(String usuario, String clave)
     {
         try {
-            ControladorSesion controlador = new ControladorSesion();
-            controlador.iniciarSesion(usuario, clave);
+            cSesion.iniciarSesion(usuario, clave);
             
             if ( usuario.equals("") && clave.equals("") ){	
 	         mostrarErrorLogin("Los campos estan vacios");
@@ -149,7 +156,7 @@ public class IniciarSesionForm extends JFrame implements ActionListener {
                  mostrarErrorLogin("El campo nombre esta vacio");
             }else if ( clave.equals("") ){
 		 mostrarErrorLogin("El campo clave esta vacio");
-            }else if ( ControladorSesion.getUsuarioActual() == null ) {
+            }else if ( cSesion.getUsuarioActual() == null ) {
 	         mostrarErrorLogin("Usuario o Password incorrecto");
             }else {
 		 MainWindow m = new MainWindow();

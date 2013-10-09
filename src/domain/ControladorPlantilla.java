@@ -11,10 +11,11 @@ public class ControladorPlantilla{
 	//metodo que retorna el id de la plantilla creada por el
 	//usuario administrador
 	public int crearPlantilla (ArrayList<String> puntos){
+        ControladorSesion cSesion = new ControladorSesion();
 	 
 	 //conversion temporar a de usuario a administrador
 	  Administrador unAdmin = new Administrador();
-      unAdmin.copiar(ControladorSesion.getUsuarioActual());
+      unAdmin.copiar(cSesion.getUsuarioActual());
 
 	  int id = unAdmin.crearPlantilla(puntos);
 	  return id;
