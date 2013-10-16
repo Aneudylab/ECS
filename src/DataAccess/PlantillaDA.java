@@ -1,5 +1,6 @@
 package DataAccess;
 
+import java.sql.ResultSet;
 import java.util.Date;
 import domain.Plantilla;
 
@@ -31,4 +32,29 @@ public class PlantillaDA{
             System.out.println("Error: " + ex.getMessage());
         }
     }
+	
+	public Plantilla leerPlantillaActual(){
+	    
+		String query = "SELECT max(id_plantilla) id FROM Plantilla";
+	    Object[] parametros = null;
+		Plantilla plantilla = new Plantilla();;
+		PuntoEvaluacionDA puntoEvaDA = new PuntoEvaluacionDA();
+		
+		try{
+		   DBManager.openDBConnection();
+		   ResultSet result = DBManager.ejecutarQuery(query,parametros);
+		   
+		   if(result.next()){
+		      int idPlan = result.getInt("id");
+			  plantilla.setId(idPlan);
+			  puntoEvaDA.leerPuntosEvaluacion(plantilla);
+		    }
+		
+		}catch(Exception err){
+		    System.out.println("Error: " + err.getMessage());
+		}finally{
+            //DBManager.closeDBConnection();
+		    return plantilla;
+		}
+	}
 } 
