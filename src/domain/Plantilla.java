@@ -19,6 +19,12 @@ public class Plantilla{
         listaPtoEva = new ArrayList<PuntoEvaluacion>();
         fechaCreada = null;
     }
+	
+	public Plantilla(int tmpID){
+	   plantillaid = tmpID;
+	   fechaCreada = null;
+	   listaPtoEva = new ArrayList<PuntoEvaluacion>();
+	}
 
     public Plantilla(ArrayList<String> listaPtosEv){
         int num = 1;
@@ -35,6 +41,14 @@ public class Plantilla{
     public int getId(){
         return plantillaid;
     }
+	
+	public ArrayList<PuntoEvaluacion> getPuntos(){
+	    return listaPtoEva;
+	}
+	
+	public int cantidadPuntos(){
+	    return listaPtoEva.size();
+	}
 
     public void setId (int tmpID){
         plantillaid = tmpID;
@@ -44,7 +58,7 @@ public class Plantilla{
     //Otros metodos
     //////////////////////////////////
 
-    private void CrearPuntoEvaluacion(int num, String punto){
+    public void CrearPuntoEvaluacion(int num, String punto){
         PuntoEvaluacion puntoEva = new PuntoEvaluacion(num,punto);
         listaPtoEva.add(puntoEva);
     }
