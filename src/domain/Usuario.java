@@ -1,4 +1,6 @@
+
 package domain;
+
 
 public class Usuario {
 
@@ -29,20 +31,24 @@ public class Usuario {
 
 	}
 
+	public Usuario(int usrID,String nom){
+	    usuarioID = usrID;
+	    nombre = nom;
+	}
+	
+	public Usuario(int id, String usrNom, Rol usrRol){
+		usuarioID = id;
+		nombre = usrNom;
+		rol = usrRol;	
+	}
+	
 	public Usuario(String nom, String cla, Rol usrRol) {
-
 		nombre = nom;
 		clave = cla;
 		rol = usrRol;
+	}
+	
 
-	}
-	
-	public Usuario(int usrID,String nom,Rol usrRol){
-	    usuarioID = usrID;
-	    nombre = nom;
-		rol = usrRol;
-	}
-	
 	public Usuario(String nombreUsu,String cla,String nom,Rol usrRol){
  
        nombreUsuario = nombreUsu;
