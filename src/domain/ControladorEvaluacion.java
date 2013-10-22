@@ -9,21 +9,20 @@ import DataAccess.PlantillaDA;
 
 public class ControladorEvaluacion{
      
-	private int representanteid;
 	private Plantilla unaPlantilla;
 	 
     //------------------------------------------------------------
-	// 		Contructor 
+	// 		Constructor 
 	//----------------------------------------------------------
 	public ControladorEvaluacion(){} 
 	
     //------------------------------------------------------------
 	// 		Metodos 
 	//----------------------------------------------------------
-	public ArrayList<HashMap<Integer,String> > obtenerListaRepresentantes(){
+	public HashMap<Integer,String> obtenerListaRepresentantes(){
 	   	   
 	   Usuario usuActual = new ControladorSesion().getUsuarioActual();
-	   ArrayList<HashMap<Integer,String> > listRepresentantes = new ArrayList<HashMap<Integer,String> >();
+	   HashMap<Integer,String> listRepresentantes = new HashMap<Integer,String>();
 	   
 	   Supervisor unSupervisor = new Supervisor();
 	   unSupervisor.copiar(usuActual);
@@ -32,21 +31,16 @@ public class ControladorEvaluacion{
 	                            unSupervisor.obtenerListaRepresentantes();
        
 	   for(Representante tmpRep: listaRepr){
-		   
-		   HashMap<Integer,String> tmpRepresentate = 
-		                           new HashMap<Integer,String>();
-		   
-		   tmpRepresentate.put(tmpRep.getID(),tmpRep.getNombre()); 
-		   listRepresentantes.add(tmpRepresentate);
+		   listRepresentantes.put(tmpRep.getID(),tmpRep.getNombre());
 	    }
 		
 		return listRepresentantes;
 	} 
 	
-    public ArrayList<HashMap<Integer, String> > obtenerPlantillaActual(){
+    public HashMap<Integer, String> obtenerPlantillaActual(){
 	   PlantillaDA unPlanDA = new PlantillaDA();
-	   ArrayList<HashMap<Integer, String> > listaPuntos = 
-	                            new ArrayList<HashMap<Integer, String> >();
+	   HashMap<Integer, String> listaPuntos = 
+	                            new HashMap<Integer, String>();
 				
 	   unaPlantilla = unPlanDA.leerPlantillaActual();
 	    
@@ -54,15 +48,11 @@ public class ControladorEvaluacion{
 		
 	   int cantPuntos = unaPlantilla.cantidadPuntos();
 		
-	   for(int i =0 ; i < cantPuntos; i++){
-		 HashMap <Integer, String> tmpPair = new HashMap <Integer, String>();
-		  
+	   for(int i =0 ; i < cantPuntos; i++){	  
 		 int idPunto = tmpPuntos.get(i).getId();
 		 String descPunto = tmpPuntos.get(i).getDescripcion();
-		
-		 tmpPair.put(idPunto, descPunto);
-		  
-		 listaPuntos.add(tmpPair);
+		 
+		 listaPuntos.put(idPunto,descPunto);
 		}
 		
 	   return listaPuntos;
