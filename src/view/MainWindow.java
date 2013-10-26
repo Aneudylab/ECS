@@ -136,8 +136,9 @@ public class MainWindow extends JFrame implements ActionListener {
 		}
 		
 		if (GENERAR_REPORTE.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Generar Reporte ", JOptionPane.INFORMATION_MESSAGE);
+			EvaluarRepresentanteForm e = new EvaluarRepresentanteForm();
+			e.evaluarRepresentante(5);
+			e.mostrar();
 		}
 		if (EVALUAR_REPRESENTANTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
