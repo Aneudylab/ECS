@@ -177,6 +177,8 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	}
 	public void ocurtar(){
 		ventana.setVisible(false);
+		MainWindow main = new MainWindow();
+		main.mostrar();
 	}
 
 	private void mostrarRepresentantes(HashMap<Integer, String> listaReps) {
@@ -262,7 +264,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 		}
 		if (e.getActionCommand() == CANCELAR) {
-			System.exit(0);
+			ocurtar();
 		}
 	}
 }
