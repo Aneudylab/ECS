@@ -112,8 +112,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		panelInteriorSuperior.setBorder(BorderFactory
 				.createTitledBorder("  Representante     "));
 
-		HashMap<Integer, String> listaReps = ControladorEvaluacion.obtenerListaRepresentantes();
-		mostrarRepresentantes(listaReps);
+		mostrarRepresentantes(Stub.darRepresentantes());
 
 		// componentes del panel
 
@@ -176,10 +175,13 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	public void mostrar() {
 		ventana.setVisible(true);
 	}
+	public void ocurtar(){
+		ventana.setVisible(false);
+	}
 
 	private void mostrarRepresentantes(HashMap<Integer, String> listaReps) {
 		listaRepresentates.add("Seleccione un Representante...........");
-		for (Map.Entry<Integer, String> entry : ControladorEvaluacion.obtenerListaRepresentantes()
+		for (Map.Entry<Integer, String> entry : Stub.darRepresentantes()
 				.entrySet()) {
 			listaRepresentates.add(entry.getValue());
 
@@ -253,11 +255,10 @@ public class EvaluarRepresentanteForm implements ActionListener {
 			for (int i = 0; i < panelEvaluacion.respuesta.size(); i++) {
 				darResp.put(panelEvaluacion.respuesta.get(i).toString(),
 						panelEvaluacion.rbtnSi.get(i).isSelected());
-				JOptionPane.showConfirmDialog(null, panelEvaluacion.lblPregunta
-						.get(i).getText()
-						+ panelEvaluacion.rbtnSi.get(i).isSelected());
 
 			}
+			guardarEvaluacion(5, darResp);
+			ocurtar();
 
 		}
 		if (e.getActionCommand() == CANCELAR) {

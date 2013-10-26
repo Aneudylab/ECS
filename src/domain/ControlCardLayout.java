@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package domain;
 
 import java.awt.Component;
@@ -14,7 +12,7 @@ import javax.swing.JPanel;
 
 import view.EvaluarRepresentanteForm;
 import view.PanelRepresentante;
-import view.Stub;
+
 
 /**
  * @author JairisThomas
@@ -40,10 +38,7 @@ public class ControlCardLayout implements ActionListener {
 				++cartaActual;
 				ventana.manejadorFlujo.show(ventana.panelCentral, ""
 						+ (cartaActual));
-
-				JOptionPane.showMessageDialog(null,
-						"Se selecciono un usuario: ", "Mensaje",
-						JOptionPane.INFORMATION_MESSAGE);
+						
 				ventana.evaluarRepresentante(5);
 				ventana.btnGuardar.setEnabled(true);
 

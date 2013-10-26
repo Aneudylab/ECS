@@ -19,7 +19,7 @@ public class ControladorEvaluacion{
     //------------------------------------------------------------
 	// 		Metodos 
 	//----------------------------------------------------------
-	public HashMap<Integer,String> obtenerListaRepresentantes(){
+	public static HashMap<Integer,String> obtenerListaRepresentantes(){
 	   	   
 	   Usuario usuActual = new ControladorSesion().getUsuarioActual();
 	   HashMap<Integer,String> listRepresentantes = new HashMap<Integer,String>();
