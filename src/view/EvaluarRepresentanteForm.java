@@ -62,7 +62,12 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	public JButton btnGuardar;
 	public JButton btnCancelar;
 
-	// -----------------------s-------------------
+	// ------------------------------------------
+	// CONTROLADORES
+	// ------------------------------------------
+		private ControladorEvaluacion cEvaluacion = new ControladorEvaluacion();
+		
+	// ------------------------------------------
 	// CONTRUCTOR
 	// ------------------------------------------
 	public EvaluarRepresentanteForm() {
@@ -112,7 +117,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		panelInteriorSuperior.setBorder(BorderFactory
 				.createTitledBorder("  Representante     "));
 
-		mostrarRepresentantes(Stub.darRepresentantes());
+		mostrarRepresentantes(cEvaluacion.obtenerListaRepresentantes());
 
 		// componentes del panel
 
@@ -173,6 +178,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	}
 
 	public void mostrar() {
+		
 		ventana.setVisible(true);
 	}
 	public void ocurtar(){
@@ -183,7 +189,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 	private void mostrarRepresentantes(HashMap<Integer, String> listaReps) {
 		listaRepresentates.add("Seleccione un Representante...........");
-		for (Map.Entry<Integer, String> entry : Stub.darRepresentantes()
+		for (Map.Entry<Integer, String> entry : listaReps
 				.entrySet()) {
 			listaRepresentates.add(entry.getValue());
 
@@ -192,7 +198,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	}
 
 	public void evaluarRepresentante(int idRepresentante) {
-		HashMap<Integer, String> puntosEv = Stub.darEvaluacion();
+		HashMap<Integer, String> puntosEv = cEvaluacion.obtenerPlantillaActual();
 		mostrarPlantilla(puntosEv);
 
 	}
@@ -201,8 +207,8 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		int i = 0;
 		for (Map.Entry<Integer, String> entry : puntosEv.entrySet()) {
 			lblCantPreguntas = new JLabel(i + " ");
-			panelEvaluacion.rbtnSi.add(new JRadioButton(" Sip "));
-			panelEvaluacion.rbtnNo.add(new JRadioButton(" Nop "));
+			panelEvaluacion.rbtnSi.add(new JRadioButton(" Si "));
+			panelEvaluacion.rbtnNo.add(new JRadioButton(" No "));
 
 			panelEvaluacion.btnGroup.add(new ButtonGroup());
 
@@ -245,7 +251,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	}
 
 	public void guardarEvaluacion(int idRep, HashMap<String, Boolean> Respuestas) {
-		int idEv = Stub.guardarEvaluacion(idRep, Respuestas);
+		int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas);
 		JOptionPane.showMessageDialog(null, "Se creó la evaluación " + idEv);
 
 	}
