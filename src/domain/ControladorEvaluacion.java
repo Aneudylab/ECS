@@ -58,7 +58,7 @@ public class ControladorEvaluacion{
 	   return listaPuntos;
 	}
      
-	public int guardarEvaluacion (int idRepre, ArrayList<HashMap<Integer, Boolean> > resp){
+	public int guardarEvaluacion (int idRepre, HashMap<Integer, Boolean> resp){
 	    
 	   Usuario usuActual = new ControladorSesion().getUsuarioActual(); 
 	   Supervisor unSupervisor = new Supervisor();
@@ -66,14 +66,11 @@ public class ControladorEvaluacion{
 	   
 	   ArrayList<Respuesta> tmpResp = new ArrayList<Respuesta>();
 	   
-	   //se crea un bucle para recorrer el HashMap
-	   for(HashMap<Integer,Boolean> tmpRepre:resp){ 
-		    //se visualiza el par que contiene el HashMap
-			for (Map.Entry<Integer, Boolean> entry : tmpRepre.entrySet())
-			{
-				tmpResp.add(new Respuesta(entry.getKey(),entry.getValue()));
-			}
-	    }
+       //se mapea el HM a ArrayList<Respuesta>
+       for (Map.Entry<Integer, Boolean> entry : resp.entrySet())
+       {
+           tmpResp.add(new Respuesta(entry.getKey(),entry.getValue()));
+       }
 	   
 	   return unSupervisor.crearEvaluacion(unaPlantilla,idRepre,tmpResp);
 	}
