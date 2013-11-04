@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
 
 import domain.ControlCardLayout;
 import domain.ControladorEvaluacion;
+import domain.ControladorSesion;
 
 /**
  * Description: Clase vista para evaluar representante.
@@ -61,11 +62,13 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	private Vector<String> listaRepresentates = new Vector<String>();
 	public JButton btnGuardar;
 	public JButton btnCancelar;
+	
 
 	// ------------------------------------------
 	// CONTROLADORES
 	// ------------------------------------------
 		private ControladorEvaluacion cEvaluacion = new ControladorEvaluacion();
+		private ControladorSesion cSesion = new ControladorSesion();
 		
 	// ------------------------------------------
 	// CONTRUCTOR
@@ -205,8 +208,10 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 	public void mostrarPlantilla(HashMap<Integer, String> puntosEv) {
 		int i = 0;
+		
 		for (Map.Entry<Integer, String> entry : puntosEv.entrySet()) {
-			lblCantPreguntas = new JLabel(i + " ");
+			
+			panelEvaluacion.IDrespuesta.add(entry.getKey());
 			panelEvaluacion.rbtnSi.add(new JRadioButton(" Si "));
 			panelEvaluacion.rbtnNo.add(new JRadioButton(" No "));
 
@@ -229,15 +234,12 @@ public class EvaluarRepresentanteForm implements ActionListener {
 					BorderLayout.EAST);
 			panelEvaluacion.respuesta.get(i).add(panelEvaluacion.rbtnNo.get(i),
 					BorderLayout.WEST);
-			panelEvaluacion.lblContPregunta.add(new JLabel(i + " ¿"));
 			panelEvaluacion.lblPregunta.add(new JLabel(" " + entry.getValue()));
 			panelEvaluacion.panelInteriorEvaluacion.add(new JPanel(
 					new BorderLayout()));
 			// Editar propiedades de los elementos del panel
 			panelEvaluacion.panelInteriorEvaluacion.get(i).setBackground(
 					Color.white);
-			panelEvaluacion.panelInteriorEvaluacion.get(i).add(
-					panelEvaluacion.lblContPregunta.get(i), BorderLayout.WEST);
 			panelEvaluacion.panelInteriorEvaluacion.get(i).add(
 					panelEvaluacion.lblPregunta.get(i), BorderLayout.WEST);
 			panelEvaluacion.panelInteriorEvaluacion.get(i).add(
@@ -250,8 +252,9 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 	}
 
-	public void guardarEvaluacion(int idRep, HashMap<String, Boolean> Respuestas) {
-		int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas);
+	public void guardarEvaluacion(int idRep, HashMap<Integer, Boolean> Respuestas) {
+		//int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas); sustituir por Stub
+		int idEv = Stub.guardarEvaluacion(idRep, Respuestas);
 		JOptionPane.showMessageDialog(null, "Se creó la evaluación " + idEv);
 
 	}
@@ -259,13 +262,14 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == GUARDAR) {
-			HashMap<String, Boolean> darResp = new HashMap<String, Boolean>();
-			for (int i = 0; i < panelEvaluacion.respuesta.size(); i++) {
-				darResp.put(panelEvaluacion.respuesta.get(i).toString(),
+			HashMap<Integer, Boolean> darResp = new HashMap<Integer, Boolean>();
+			for (int i = 0; i < panelEvaluacion.getComponentCount(); i++) {
+				JOptionPane.showMessageDialog(null, " ID : "+panelEvaluacion.IDrespuesta.get(i).intValue());
+				darResp.put(panelEvaluacion.IDrespuesta.get(i).intValue(),
 						panelEvaluacion.rbtnSi.get(i).isSelected());
 
 			}
-			guardarEvaluacion(5, darResp);
+			guardarEvaluacion(cSesion.getUsuarioActual().getID(), darResp);
 			ocurtar();
 
 		}

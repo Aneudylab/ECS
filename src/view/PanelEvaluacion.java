@@ -22,6 +22,7 @@ public class PanelEvaluacion extends JPanel {
 	public ArrayList<JRadioButton> rbtnNo = new ArrayList<JRadioButton>();
 	public ArrayList<ButtonGroup> btnGroup = new ArrayList<ButtonGroup>();
 	public ArrayList<JPanel> respuesta = new ArrayList<JPanel>();
+	public ArrayList<Integer> IDrespuesta = new ArrayList<Integer>();
 
 	// JFrame v = new JFrame();
 

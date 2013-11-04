@@ -30,7 +30,7 @@ public class Stub {
 		return testMap;
 	}
 	
-	public static int guardarEvaluacion(int idReps, HashMap<String, Boolean> Respuestas){
+	public static int guardarEvaluacion(int idReps, HashMap<Integer, Boolean> Respuestas){
 		return 1;
 	}
 
