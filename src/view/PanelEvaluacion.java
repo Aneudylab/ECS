@@ -15,19 +15,16 @@ import javax.swing.plaf.basic.BasicScrollPaneUI.HSBChangeListener;
 
 public class PanelEvaluacion extends JPanel {
 
-	public ArrayList<JPanel> panelInteriorEvaluacion = new ArrayList<JPanel>();
-	public ArrayList<JLabel> lblPregunta = new ArrayList<JLabel>();
-	public ArrayList<JLabel> lblContPregunta = new ArrayList<JLabel>();
-	public ArrayList<JRadioButton> rbtnSi = new ArrayList<JRadioButton>();
-	public ArrayList<JRadioButton> rbtnNo = new ArrayList<JRadioButton>();
-	public ArrayList<ButtonGroup> btnGroup = new ArrayList<ButtonGroup>();
-	public ArrayList<JPanel> respuesta = new ArrayList<JPanel>();
-	public ArrayList<Integer> IDrespuesta = new ArrayList<Integer>();
-
-	// JFrame v = new JFrame();
+	private ArrayList<JPanel> panelInteriorEvaluacion = new ArrayList<JPanel>();
+	private ArrayList<JLabel> lblPregunta = new ArrayList<JLabel>();
+	private ArrayList<JLabel> lblContPregunta = new ArrayList<JLabel>();
+	private ArrayList<JRadioButton> rbtnSi = new ArrayList<JRadioButton>();
+	private ArrayList<JRadioButton> rbtnNo = new ArrayList<JRadioButton>();
+	private ArrayList<ButtonGroup> btnGroup = new ArrayList<ButtonGroup>();
+	private ArrayList<JPanel> respuesta = new ArrayList<JPanel>();
+	private ArrayList<Integer> IDrespuesta = new ArrayList<Integer>();
 
 	public PanelEvaluacion() {
-		// TODO Apéndice de constructor generado automáticamente
 		construyePanelEvaluacion();
 	}
 
@@ -41,5 +38,66 @@ public class PanelEvaluacion extends JPanel {
 		setMaximumSize(new Dimension(950, 40));
 		setMinimumSize(new Dimension(850, 40));
 	}
+	//-------------------------------------
+	//SETTERS AND GETTERS 
+	//--------------------------------------
+	
+	public ArrayList<Integer> getIDrespuesta() {
+		return IDrespuesta;
+	}
 
+	public void setIDrespuesta(ArrayList<Integer> iDrespuesta) {
+		IDrespuesta = iDrespuesta;
+	}
+
+	public ArrayList<JPanel> getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(ArrayList<JPanel> respuesta) {
+		this.respuesta = respuesta;
+	}
+
+	public ArrayList<JRadioButton> getRbtnSi() {
+		return rbtnSi;
+	}
+
+	public void setRbtnSi(ArrayList<JRadioButton> rbtnSi) {
+		this.rbtnSi = rbtnSi;
+	}
+
+	public ArrayList<JRadioButton> getRbtnNo() {
+		return rbtnNo;
+	}
+
+	public void setRbtnNo(ArrayList<JRadioButton> rbtnNo) {
+		this.rbtnNo = rbtnNo;
+	}
+
+	public ArrayList<ButtonGroup> getBtnGroup() {
+		return btnGroup;
+	}
+
+	public void setBtnGroup(ArrayList<ButtonGroup> btnGroup) {
+		this.btnGroup = btnGroup;
+	}
+
+	public ArrayList<JLabel> getLblPregunta() {
+		return lblPregunta;
+	}
+
+	public void setLblPregunta(ArrayList<JLabel> lblPregunta) {
+		this.lblPregunta = lblPregunta;
+	}
+	
+	public ArrayList<JPanel> getPanelInteriorEvaluacion() {
+		return panelInteriorEvaluacion;
+	}
+
+	public void setPanelInteriorEvaluacion(ArrayList<JPanel> panelInteriorEvaluacion) {
+		this.panelInteriorEvaluacion = panelInteriorEvaluacion;
+	}
+	public int getCantLblPregunta() {
+		return lblPregunta.size();
+	}
 }

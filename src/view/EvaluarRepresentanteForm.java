@@ -44,24 +44,24 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 	private static final String GUARDAR = "GUARDAR";
 	private static final String CANCELAR = "CANCELAR";
-	int cartaActual = 1;
+	private int cartaActual = 1;
 	// ------------------------------------------
 	// Componentes de la ventana
 	// ------------------------------------------
 
 	private JFrame ventana;
 	private JPanel panelSuperior, panelInteriorSuperior, PanelInferior;
-	public JPanel panelCentral;
+	private JPanel panelCentral;
 	private PanelRepresentante panelRepresentante;
 	private PanelEvaluacion panelEvaluacion;
-	public CardLayout manejadorFlujo;
+	private CardLayout manejadorFlujo;
 	private JLabel lblTituloPanelSuperior;
-	public JComboBox<String> Combo;
+	private JComboBox<String> Combo;
 	private JLabel lblCantPreguntas;
-	public int carta = 1;
+	private int carta = 1;
 	private Vector<String> listaRepresentates = new Vector<String>();
-	public JButton btnGuardar;
-	public JButton btnCancelar;
+	private JButton btnGuardar;
+	private JButton btnCancelar;
 	
 
 	// ------------------------------------------
@@ -73,6 +73,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	// ------------------------------------------
 	// CONTRUCTOR
 	// ------------------------------------------
+	
 	public EvaluarRepresentanteForm() {
 		construyePanelSuperior();
 		construyePanelRepresentante();
@@ -131,19 +132,19 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 		// agregar los componentes al panel
 		panelInteriorSuperior.add(lblTituloPanelSuperior, BorderLayout.WEST);
-		panelInteriorSuperior.add(Combo, BorderLayout.EAST);
+		panelInteriorSuperior.add(getCombo(), BorderLayout.EAST);
 
 		panelSuperior.add(panelInteriorSuperior);
 	}
 
 	private void construyePanelCentral() {
-		panelCentral = new JPanel();
-		manejadorFlujo = new CardLayout();
-		panelCentral.setLayout(manejadorFlujo);
-		panelCentral.setBackground(Color.WHITE);
-		panelCentral.setSize(873, 506);
-		panelCentral.add(panelRepresentante, "1");
-		panelCentral.add(panelEvaluacion, "2");
+		setPanelCentral(new JPanel());
+		setManejadorFlujo(new CardLayout());
+		getPanelCentral().setLayout(getManejadorFlujo());
+		getPanelCentral().setBackground(Color.WHITE);
+		getPanelCentral().setSize(873, 506);
+		getPanelCentral().add(panelRepresentante, "1");
+		getPanelCentral().add(panelEvaluacion, "2");
 
 	}
 
@@ -152,20 +153,20 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		PanelInferior.setLayout(flow);
 		flow.setHgap(150);
-		btnGuardar = new JButton("    Guardar       ");
-		btnCancelar = new JButton("    Cancelar       ");
-		btnGuardar.setActionCommand(GUARDAR);
-		btnCancelar.setActionCommand(CANCELAR);
-		btnGuardar.addActionListener(this);
-		btnCancelar.addActionListener(this);
-		PanelInferior.add(btnCancelar);
-		PanelInferior.add(btnGuardar);
+		setBtnGuardar(new JButton("    Guardar       "));
+		setBtnCancelar(new JButton("    Cancelar       "));
+		getBtnGuardar().setActionCommand(GUARDAR);
+		getBtnCancelar().setActionCommand(CANCELAR);
+		getBtnGuardar().addActionListener(this);
+		getBtnCancelar().addActionListener(this);
+		PanelInferior.add(getBtnCancelar());
+		PanelInferior.add(getBtnGuardar());
 		PanelInferior.setPreferredSize(new Dimension(900, 50));
 		PanelInferior.setMaximumSize(new Dimension(900, 50));
 		PanelInferior.setMinimumSize(new Dimension(900, 50));
 
 		if (cartaActual == 1) {
-			btnGuardar.setEnabled(false);
+			getBtnGuardar().setEnabled(false);
 		}
 
 	}
@@ -211,41 +212,42 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		
 		for (Map.Entry<Integer, String> entry : puntosEv.entrySet()) {
 			
-			panelEvaluacion.IDrespuesta.add(entry.getKey());
-			panelEvaluacion.rbtnSi.add(new JRadioButton(" Si "));
-			panelEvaluacion.rbtnNo.add(new JRadioButton(" No "));
+			panelEvaluacion.getIDrespuesta().add(entry.getKey());
+			panelEvaluacion.getRbtnSi().add(new JRadioButton(" Si "));
+			panelEvaluacion.getRbtnNo().add(new JRadioButton(" No "));
 
-			panelEvaluacion.btnGroup.add(new ButtonGroup());
+			panelEvaluacion.getBtnGroup().add(new ButtonGroup());
 
-			panelEvaluacion.btnGroup.get(i).add(panelEvaluacion.rbtnSi.get(i));
-			panelEvaluacion.btnGroup.get(i).add(panelEvaluacion.rbtnNo.get(i));
+			panelEvaluacion.getBtnGroup().get(i).add(panelEvaluacion.getRbtnSi().get(i));
+			panelEvaluacion.getBtnGroup().get(i).add(panelEvaluacion.getRbtnNo().get(i));
 
-			panelEvaluacion.rbtnSi.get(i).setBackground(Color.WHITE);
-			panelEvaluacion.rbtnNo.get(i).setBackground(Color.WHITE);
+			panelEvaluacion.getRbtnSi().get(i).setBackground(Color.WHITE);
+			panelEvaluacion.getRbtnNo().get(i).setBackground(Color.WHITE);
 
-			panelEvaluacion.rbtnSi.get(i).setActionCommand("SI");
-			panelEvaluacion.rbtnNo.get(i).setActionCommand("NO");
-			panelEvaluacion.rbtnSi.get(i).addActionListener(this);
-			panelEvaluacion.rbtnNo.get(i).addActionListener(this);
+			panelEvaluacion.getRbtnSi().get(i).setActionCommand("SI");
+			panelEvaluacion.getRbtnNo().get(i).setActionCommand("NO");
+			panelEvaluacion.getRbtnSi().get(i).addActionListener(this);
+			panelEvaluacion.getRbtnNo().get(i).addActionListener(this);
 
-			panelEvaluacion.respuesta.add(new JPanel(new BorderLayout()));
+			panelEvaluacion.getRespuesta().add(new JPanel(new BorderLayout()));
 
-			panelEvaluacion.respuesta.get(i).add(panelEvaluacion.rbtnSi.get(i),
+			panelEvaluacion.getRespuesta().get(i).add(panelEvaluacion.getRbtnSi().get(i),
 					BorderLayout.EAST);
-			panelEvaluacion.respuesta.get(i).add(panelEvaluacion.rbtnNo.get(i),
+			panelEvaluacion.getRespuesta().get(i).add(panelEvaluacion.getRbtnNo().get(i),
 					BorderLayout.WEST);
-			panelEvaluacion.lblPregunta.add(new JLabel(" " + entry.getValue()));
-			panelEvaluacion.panelInteriorEvaluacion.add(new JPanel(
+			
+			panelEvaluacion.getLblPregunta().add(new JLabel(" " + entry.getValue()));
+			panelEvaluacion.getPanelInteriorEvaluacion().add(new JPanel(
 					new BorderLayout()));
 			// Editar propiedades de los elementos del panel
-			panelEvaluacion.panelInteriorEvaluacion.get(i).setBackground(
+			panelEvaluacion.getPanelInteriorEvaluacion().get(i).setBackground(
 					Color.white);
-			panelEvaluacion.panelInteriorEvaluacion.get(i).add(
-					panelEvaluacion.lblPregunta.get(i), BorderLayout.WEST);
-			panelEvaluacion.panelInteriorEvaluacion.get(i).add(
-					panelEvaluacion.respuesta.get(i), BorderLayout.EAST);
+			panelEvaluacion.getPanelInteriorEvaluacion().get(i).add(
+					panelEvaluacion.getLblPregunta().get(i), BorderLayout.WEST);
+			panelEvaluacion.getPanelInteriorEvaluacion().get(i).add(
+					panelEvaluacion.getRespuesta().get(i), BorderLayout.EAST);
 
-			panelEvaluacion.add(panelEvaluacion.panelInteriorEvaluacion.get(i));
+			panelEvaluacion.add(panelEvaluacion.getPanelInteriorEvaluacion().get(i));
 			i++;
 
 		}
@@ -264,9 +266,9 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		if (e.getActionCommand() == GUARDAR) {
 			HashMap<Integer, Boolean> darResp = new HashMap<Integer, Boolean>();
 			for (int i = 0; i < panelEvaluacion.getComponentCount(); i++) {
-				JOptionPane.showMessageDialog(null, " ID : "+panelEvaluacion.IDrespuesta.get(i).intValue());
-				darResp.put(panelEvaluacion.IDrespuesta.get(i).intValue(),
-						panelEvaluacion.rbtnSi.get(i).isSelected());
+				JOptionPane.showMessageDialog(null, " ID : "+panelEvaluacion.getIDrespuesta().get(i).intValue());
+				darResp.put(panelEvaluacion.getIDrespuesta().get(i).intValue(),
+						panelEvaluacion.getRbtnSi().get(i).isSelected());
 
 			}
 			guardarEvaluacion(cSesion.getUsuarioActual().getID(), darResp);
@@ -277,4 +279,53 @@ public class EvaluarRepresentanteForm implements ActionListener {
 			ocurtar();
 		}
 	}
+	//-------------------------------------
+	//SETTERS Y GETTERS
+	//-------------------------------------
+	public JComboBox<String> getCombo() {
+		return Combo;
+	}
+
+	public void setCombo(JComboBox<String> combo) {
+		Combo = combo;
+	}
+
+	public int getCarta() {
+		return carta;
+	}
+
+	public void setCarta(int carta) {
+		this.carta = carta;
+	}
+
+	public CardLayout getManejadorFlujo() {
+		return manejadorFlujo;
+	}
+
+	public void setManejadorFlujo(CardLayout manejadorFlujo) {
+		this.manejadorFlujo = manejadorFlujo;
+	}
+
+	public JPanel getPanelCentral() {
+		return panelCentral;
+	}
+
+	public void setPanelCentral(JPanel panelCentral) {
+		this.panelCentral = panelCentral;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
+	public JButton getBtnCancelar(){
+		return btnCancelar;
+	}
+	public void setBtnCancelar(JButton btnCancelar){
+		this.btnCancelar = btnCancelar;
+	}
+	
 }

@@ -20,8 +20,8 @@ import view.PanelRepresentante;
  */
 public class ControlCardLayout implements ActionListener {
 
-	EvaluarRepresentanteForm ventana;
-	JPanel panelCentral;
+	private EvaluarRepresentanteForm ventana;
+	private JPanel panelCentral;
 
 	public ControlCardLayout(EvaluarRepresentanteForm ventana) {
 		this.ventana = ventana;
@@ -31,16 +31,16 @@ public class ControlCardLayout implements ActionListener {
 	public void actionPerformed(ActionEvent evento) {
 		// TODO Apéndice de método generado automáticamente
 
-		if (evento.getSource() == ventana.Combo) {
-			int cartaActual = ventana.carta;
+		if (evento.getSource() == ventana.getCombo()) {
+			int cartaActual = ventana.getCarta();
 
-			if (ventana.Combo.getSelectedIndex() != 0) {
+			if (ventana.getCombo().getSelectedIndex() != 0) {
 				++cartaActual;
-				ventana.manejadorFlujo.show(ventana.panelCentral, ""
+				ventana.getManejadorFlujo().show(ventana.getPanelCentral(), ""
 						+ (cartaActual));
 						
-				ventana.evaluarRepresentante(5);
-				ventana.btnGuardar.setEnabled(true);
+				ventana.evaluarRepresentante(1);
+				ventana.getBtnGuardar().setEnabled(true);
 
 			}
 
