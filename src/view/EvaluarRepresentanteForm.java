@@ -266,7 +266,6 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		if (e.getActionCommand() == GUARDAR) {
 			HashMap<Integer, Boolean> darResp = new HashMap<Integer, Boolean>();
 			for (int i = 0; i < panelEvaluacion.getComponentCount(); i++) {
-				JOptionPane.showMessageDialog(null, " ID : "+panelEvaluacion.getIDrespuesta().get(i).intValue());
 				darResp.put(panelEvaluacion.getIDrespuesta().get(i).intValue(),
 						panelEvaluacion.getRbtnSi().get(i).isSelected());
 
