@@ -298,12 +298,18 @@ public class CrearPlantillaForm extends KeyAdapter implements
 	// -----------------------------------------------------------------
 	
 	public void crearNuevaPlantilla(ArrayList<String> listaPreguntas) {
-		int plantillaId = cPlantilla.crearPlantilla(listaPreguntas);
-			 
-		 JOptionPane.showMessageDialog(null, "Se creó la plantilla: "+plantillaId,
-                         "Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
+        if(listaPreguntas.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No puede crear una plantilla vacía",
+                "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            int plantillaId = cPlantilla.crearPlantilla(listaPreguntas);
 
-         ocultar();
+            JOptionPane.showMessageDialog(null, "Se creó la plantilla: "+plantillaId,
+                "Crear Plantilla", JOptionPane.INFORMATION_MESSAGE);
+
+            ocultar();
+        }
 	}
 	public void mostrar(){
 		ventana.setVisible(true);
