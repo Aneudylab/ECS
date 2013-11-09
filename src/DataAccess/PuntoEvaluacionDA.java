@@ -32,6 +32,7 @@ public class PuntoEvaluacionDA {
            
         }catch(Exception ex){
         	System.out.println("Error: " + ex.getMessage());
+        	System.out.println("En puntoevaluacionDA");
         }
         
 	}
