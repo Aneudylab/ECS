@@ -256,7 +256,6 @@ public class EvaluarRepresentanteForm implements ActionListener {
 	public void guardarEvaluacion(HashMap<Integer, Boolean> Respuestas) {
 		int idRep = ControlCardLayout.darIdRepresentante();
 		int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas); 
-		//int idEv = Stub.guardarEvaluacion(idRep, Respuestas);
 		JOptionPane.showMessageDialog(null, "Se creó la evaluación " + idEv);
 
 	}
