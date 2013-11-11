@@ -1,7 +1,9 @@
 
 package DataAccess;
 
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.ArrayList;
 import domain.Evaluacion;
 
 public class EvaluacionDA{
@@ -25,11 +27,52 @@ public class EvaluacionDA{
 			
         }catch(Exception ex){
         	System.out.println("Error: " + ex.getMessage());
-        	System.out.println("En EvaluacionDA");
         }
 		finally{
-		   //DBManager.closeDBConnection();
+		   DBManager.closeDBConnection();
 		}
-	   
 	}
+
+    public ArrayList<Evaluacion> leerEvaluaciones(int idRepresentante){
+        ArrayList<Evaluacion> evals = new ArrayList<Evaluacion>();
+        ResultSet result;
+        Object[] parametros;
+
+        String query =  "SELECT iD_EVALUACION, FECHA_CREADA " +
+                        "FROM EVALUACION " +
+                        "WHERE ID_REPRESENTANTE = ?"
+
+        return evals;
+    }
+    /*{
+       
+	    ResultSet result;
+	    ArrayList<Representante> tmpListaRepr = null;
+	    Object[] parametros;
+
+        String query = "SELECT id_usuario id,nombre " + 
+		               "FROM usuario " +
+		               "WHERE id_supervisor=?";
+
+        parametros = new Object[]{idSupervisor};
+		
+        try{
+			tmpListaRepr = new ArrayList<Representante>();
+			result = DBManager.ejecutarQuery(query, parametros);
+			
+            while(result.next()){			                
+				int idUsuario = result.getInt("id"); //Id del usuario
+                String nombre = result.getString("nombre"); //Nombre del usuario
+                
+				tmpListaRepr.add(new Representante(idUsuario,nombre));
+			}
+			
+        }catch(Exception ex){
+            System.out.println("Error: " + ex.getMessage());
+		}finally{
+			//DBManager.closeDBConnection();
+			return tmpListaRepr;		
+		}
+   
+    } */
 }

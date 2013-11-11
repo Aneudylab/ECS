@@ -2,12 +2,14 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import DataAccess.RespuestaDA;
 
 
 public class Evaluacion{
   
    private int evaluacionid;
+   private Date fechaCreada;
    private Plantilla unaPlantilla;
    private ArrayList<Respuesta> listaRespuestas;
   
@@ -57,5 +59,15 @@ public class Evaluacion{
 		                          idPunto,cumple);
 	 }
    }
-  
+  // Stub Aneudy
+   //Constructores
+   public Evaluacion(int id, Date fechaCreada){
+       this.evaluacionid = id;
+       this.fechaCreada = fechaCreada;
+   }
+
+   // Métodos
+   public Date getFechaCreada(){
+       return this.fechaCreada;
+   }
 }
