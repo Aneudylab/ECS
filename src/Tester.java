@@ -1,6 +1,6 @@
 public class Tester{
     public static void main(String[] args){
-        Pruevda pru = new Pruevda();
+        BaseTest pru = new TestEvalDA();
         pru.Run();
     }
 } 

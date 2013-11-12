@@ -2,36 +2,15 @@ import domain.Evaluacion;
 import DataAccess.EvaluacionDA;
 import java.util.Date;
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
 
-public class Pruevda{
-    private int passed;
-    private int failed;
+public class TestEvalDA extends BaseTest{
 
-    public Pruevda(){
-        this.passed = 0;
-        this.failed = 0;
+    @Override
+    protected void RunTests(){
+        TestSuiteProbarEvaluacion();
+        TestSuiteProbarEvaluacionDA();
     }
 
-    public void Run() {
-        System.out.println("Running...");
-        RunTests();
-        System.out.println("Test Completed");
-        System.out.println("\n===================================================");
-        System.out.println("Summary: " + passed + " passed " + failed + " failed");
-    }
-    private Date newFecha(String f) {
-        Date d = null;
-        try{
-            SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
-
-            d = sdf.parse(f);
-        }
-        catch(Exception e){
-        }
-
-        return d;
-    }
     private void TestSuiteProbarEvaluacion(){
         Evaluacion ev = new Evaluacion(1, newFecha("20/05/2008"));
         Evaluacion ev2 = new Evaluacion(1, newFecha("20/05/2008"));
@@ -88,12 +67,9 @@ public class Pruevda{
         Test("Ev's PlantillaId", testEvIdPlantilla(ev, 1, true));
         Test("Ev's incorrect PlantillaId", testEvIdPlantilla(ev, 2, false));
 
+
     }
 
-    private void RunTests(){
-        TestSuiteProbarEvaluacion();
-        TestSuiteProbarEvaluacionDA();
-    }
 
     private boolean testEvaluacionId(Evaluacion input1, int input2, boolean expected){
         return (input1.getId() == input2) == expected;
@@ -121,13 +97,5 @@ public class Pruevda{
         return true;
     }
 
-    private void Test(String name, boolean daTest){
-        System.out.println("---------------------------------------------------");
-        System.out.println("Testing "+ name);
-        System.out.println("Finish " + (daTest? "Successful" : "Failure"));
-        System.out.println("---------------------------------------------------");
-
-        int joker = daTest ? ++passed : ++failed;
-
-    }
+    
 } 
