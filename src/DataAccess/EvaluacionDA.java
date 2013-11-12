@@ -40,7 +40,7 @@ public class EvaluacionDA{
 
         String query =  "SELECT iD_EVALUACION, FECHA_CREADA " +
                         "FROM EVALUACION " +
-                        "WHERE ID_REPRESENTANTE = ?"
+                        "WHERE ID_REPRESENTANTE = ?";
 
         return evals;
     }

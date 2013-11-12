@@ -70,4 +70,17 @@ public class Evaluacion{
    public Date getFechaCreada(){
        return this.fechaCreada;
    }
+   @Override
+   public boolean equals(Object object){
+       boolean isSame = false;
+
+       if(object != null && object instanceof Evaluacion){
+           Evaluacion daEv = (Evaluacion) object;
+
+           isSame = fechaCreada.compareTo(daEv.getFechaCreada()) == 0;
+           isSame = isSame && evaluacionid == daEv.getId();
+       }
+
+       return isSame;
+   }
 }
