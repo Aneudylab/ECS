@@ -57,4 +57,15 @@ public class PlantillaDA{
 		    return plantilla;
 		}
 	}
+
+    //Stub Aneudy
+    public Plantilla leerPlantilla(int idEv){
+        Plantilla unaPlant = new Plantilla(1);
+
+        unaPlant.CrearPuntoEvaluacion(1, "El representante utiliza protocolo de bienvenida");
+        unaPlant.CrearPuntoEvaluacion(2, "El representante muestra empatía durante la conversación");
+        unaPlant.CrearPuntoEvaluacion(3, "El representante identifica la necesidad del cliente");
+
+        return unaPlant;
+    }
 } 

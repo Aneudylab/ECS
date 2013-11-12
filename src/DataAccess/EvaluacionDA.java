@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.ArrayList;
 import domain.Evaluacion;
+import domain.Plantilla;
 
 public class EvaluacionDA{
 
@@ -33,46 +34,50 @@ public class EvaluacionDA{
 		}
 	}
 
+    // Retorna una lista de evaluaciones de un representante
     public ArrayList<Evaluacion> leerEvaluaciones(int idRepresentante){
         ArrayList<Evaluacion> evals = new ArrayList<Evaluacion>();
         ResultSet result;
         Object[] parametros;
 
-        String query =  "SELECT iD_EVALUACION, FECHA_CREADA " +
-                        "FROM EVALUACION " +
-                        "WHERE ID_REPRESENTANTE = ?";
+        String query =  "SELECT id_evaluacion, fecha_creada " +
+                        "FROM evaluacion " +
+                        "WHERE id_representante = ?";
 
-        return evals;
-    }
-    /*{
-       
-	    ResultSet result;
-	    ArrayList<Representante> tmpListaRepr = null;
-	    Object[] parametros;
+        parametros = new Object[]{idRepresentante};
 
-        String query = "SELECT id_usuario id,nombre " + 
-		               "FROM usuario " +
-		               "WHERE id_supervisor=?";
-
-        parametros = new Object[]{idSupervisor};
-		
         try{
-			tmpListaRepr = new ArrayList<Representante>();
+            DBManager.openDBConnection();
 			result = DBManager.ejecutarQuery(query, parametros);
-			
+
             while(result.next()){			                
-				int idUsuario = result.getInt("id"); //Id del usuario
-                String nombre = result.getString("nombre"); //Nombre del usuario
+				int id = result.getInt("id_evaluacion"); //Id de la evaluación
+                Date fecha = result.getDate("fecha_creada"); //fecha en que se creó
                 
-				tmpListaRepr.add(new Representante(idUsuario,nombre));
+                Evaluacion unaEv = new Evaluacion(id, fecha);
+
+                evals.add(unaEv);
 			}
-			
-        }catch(Exception ex){
+        }
+        catch(Exception ex){
             System.out.println("Error: " + ex.getMessage());
-		}finally{
-			//DBManager.closeDBConnection();
-			return tmpListaRepr;		
-		}
-   
-    } */
+        }
+        finally{
+            return evals;
+        }
+    }
+
+    // Retorna una evaluación según un Id de Evaluación
+    public Evaluacion leerEvaluacion(int idEvaluacion){
+        PlantillaDA pda = new PlantillaDA();
+        RespuestaDA rda = new RespuestaDA();
+
+        Plantilla unaPlant = pda.leerPlantilla(idEvaluacion);
+
+        Evaluacion unaEv = new Evaluacion(idEvaluacion, unaPlant);
+
+        rda.cargarRespuestas(unaEv);
+
+        return unaEv;
+    }
 }

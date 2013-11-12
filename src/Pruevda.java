@@ -32,8 +32,7 @@ public class Pruevda{
 
         return d;
     }
-
-    private void RunTests() {
+    private void TestSuiteProbarEvaluacion(){
         Evaluacion ev = new Evaluacion(1, newFecha("20/05/2008"));
         Evaluacion ev2 = new Evaluacion(1, newFecha("20/05/2008"));
         Evaluacion ev3 = new Evaluacion(2, newFecha("20/05/2008"));
@@ -65,6 +64,37 @@ public class Pruevda{
         Test("Two Equals With Diff Dates", testEvaluacionEquals(ev, ev4, false));
     }
 
+    private void TestSuiteProbarEvaluacionDA(){
+        EvaluacionDA eda = new EvaluacionDA();
+        Evaluacion ev = null;
+        ArrayList<Evaluacion> evList = null;
+
+        evList = eda.leerEvaluaciones(4);
+
+        Test("Count Objs in EvList", evList.size() == 3);
+        Test("EvList contains an Ev", testEvListContainsEv(evList, new Evaluacion(1, newFecha("07/04/2013")), true));
+        Test("EvList contains an Ev", testEvListContainsEv(evList, new Evaluacion(2, newFecha("12/11/2013")), true));
+        Test("EvList contains an Ev", testEvListContainsEv(evList, new Evaluacion(3, newFecha("12/11/2013")), true));
+
+        evList = eda.leerEvaluaciones(5);
+        Test("Count Objs in EvList", evList.size() == 2);
+        Test("EvList contains an Ev", testEvListContainsEv(evList, new Evaluacion(4, newFecha("12/11/2013")), true));
+        Test("EvList contains an Ev", testEvListContainsEv(evList, new Evaluacion(5, newFecha("12/11/2013")), true));
+
+        evList = eda.leerEvaluaciones(6);
+        Test("Count Objs in EvList", evList.size() == 0);
+       
+        ev = eda.leerEvaluacion(1);
+        Test("Ev's PlantillaId", testEvIdPlantilla(ev, 1, true));
+        Test("Ev's incorrect PlantillaId", testEvIdPlantilla(ev, 2, false));
+
+    }
+
+    private void RunTests(){
+        TestSuiteProbarEvaluacion();
+        TestSuiteProbarEvaluacionDA();
+    }
+
     private boolean testEvaluacionId(Evaluacion input1, int input2, boolean expected){
         return (input1.getId() == input2) == expected;
     }
@@ -81,8 +111,8 @@ public class Pruevda{
         return input1.contains(input2) == expected;
     }
 
-    private boolean testEvaluacionDALeerEvaluaciones(){
-        return true;
+    private boolean testEvIdPlantilla(Evaluacion input1, int input2, boolean expected){
+        return (input1.getIdPlantilla() == input2) == expected;
     }
     private boolean testEvaluacionDALeerEvaluacion(){
         return true;

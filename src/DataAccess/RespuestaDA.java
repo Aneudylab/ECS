@@ -1,5 +1,6 @@
 
 package DataAccess;
+import domain.Evaluacion;
 
 public class RespuestaDA{
 
@@ -14,12 +15,6 @@ public class RespuestaDA{
         
 
 		int cumple = cumplePunto ? 1 : 0;
-        /*
-		int cumple = 0;
-		if(cumplePunto){
-		   cumple = 1;
-		}
-        */
 		
         parametros = new Object[]{idEval,idPlant,idPtoEva,cumple};
         
@@ -35,5 +30,7 @@ public class RespuestaDA{
 		   //DBManager.closeDBConnection();
 		}	    
 	}
+
+   public void cargarRespuestas(Evaluacion unaEv){}
 
 }

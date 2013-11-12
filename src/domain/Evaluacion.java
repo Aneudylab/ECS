@@ -66,6 +66,10 @@ public class Evaluacion{
        this.fechaCreada = fechaCreada;
    }
 
+   public Evaluacion(int id, Plantilla unaPlant){
+       this.evaluacionid = id;
+       this.unaPlantilla = unaPlant;
+   }
    // Métodos
    public Date getFechaCreada(){
        return this.fechaCreada;
