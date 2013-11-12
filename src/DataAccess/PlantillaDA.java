@@ -58,7 +58,8 @@ public class PlantillaDA{
 		}
 	}
 
-    //Stub Aneudy
+    // Stub Aneudy
+    // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     public Plantilla leerPlantilla(int idEv){
         Plantilla unaPlant = new Plantilla(1);
 
@@ -68,4 +69,6 @@ public class PlantillaDA{
 
         return unaPlant;
     }
+    // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    // Fin Stub Aneudy
 } 

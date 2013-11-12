@@ -60,20 +60,41 @@ public class Evaluacion{
 	 }
    }
   // Stub Aneudy
+   // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
    //Constructores
    public Evaluacion(int id, Date fechaCreada){
        this.evaluacionid = id;
        this.fechaCreada = fechaCreada;
+       listaRespuestas = new ArrayList<Respuesta>();
    }
 
    public Evaluacion(int id, Plantilla unaPlant){
        this.evaluacionid = id;
        this.unaPlantilla = unaPlant;
+       listaRespuestas = new ArrayList<Respuesta>();
    }
    // Métodos
    public Date getFechaCreada(){
        return this.fechaCreada;
    }
+
+   public int getIdRespuesta(int index){
+       if(index < 0 || index > listaRespuestas.size()) return -1;
+       return listaRespuestas.get(index).getID();
+   }
+
+   public boolean getRespuesta(int id){
+       for(Respuesta resp: listaRespuestas){
+           if(resp.getID() == id) return resp.getCumplePunto();
+       }
+
+       return false;
+   }
+
+   public int contarRespuestas(){
+       return listaRespuestas.size();
+   }
+
    @Override
    public boolean equals(Object object){
        boolean isSame = false;
@@ -87,4 +108,6 @@ public class Evaluacion{
 
        return isSame;
    }
+   // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+   // Fin Stub Aneudy
 }

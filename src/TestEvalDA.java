@@ -63,10 +63,23 @@ public class TestEvalDA extends BaseTest{
         evList = eda.leerEvaluaciones(6);
         Test("Count Objs in EvList", evList.size() == 0);
        
-        ev = eda.leerEvaluacion(1);
+        ev = eda.leerEvaluacion(3);
         Test("Ev's PlantillaId", testEvIdPlantilla(ev, 1, true));
         Test("Ev's incorrect PlantillaId", testEvIdPlantilla(ev, 2, false));
+        Test("Count Respuestas in Ev from DB", ev.contarRespuestas() == 3);
+        Test("Ev's Resp", ev.getRespuesta(1) == true);
+        Test("Ev's Resp", ev.getRespuesta(2) == false);
+        Test("Ev's Resp", ev.getRespuesta(3) == false);
 
+        ev = eda.leerEvaluacion(2);
+        Test("Ev's Resp", ev.getRespuesta(1) == true);
+        Test("Ev's Resp", ev.getRespuesta(2) == true);
+        Test("Ev's Resp", ev.getRespuesta(3) == true);
+
+        ev = eda.leerEvaluacion(1);
+        Test("Ev's Resp", ev.getRespuesta(1) == true);
+        Test("Ev's Resp", ev.getRespuesta(2) == false);
+        Test("Ev's Resp", ev.getRespuesta(3) == true);
 
     }
 

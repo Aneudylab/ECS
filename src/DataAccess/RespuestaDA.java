@@ -1,6 +1,7 @@
 
 package DataAccess;
 import domain.Evaluacion;
+import java.sql.ResultSet;
 
 public class RespuestaDA{
 
@@ -26,11 +27,33 @@ public class RespuestaDA{
         }catch(Exception ex){
         	System.out.println("Error: " + ex.getMessage());
         }
-		finally{
-		   //DBManager.closeDBConnection();
-		}	    
 	}
 
-   public void cargarRespuestas(Evaluacion unaEv){}
+   public void cargarRespuestas(Evaluacion unaEv){
+        ResultSet result;
+        Object[] parametros;
+
+        String query = "SELECT id_punto_evaluacion, cumple_punto " +
+                       "FROM respuesta " +
+                       "WHERE id_evaluacion = ? " +
+                       "  AND id_plantilla = ?";
+
+        parametros = new Object[]{unaEv.getId(), unaEv.getIdPlantilla()};
+
+        try{
+            DBManager.openDBConnection();
+			result = DBManager.ejecutarQuery(query, parametros);
+
+            while(result.next()){			                
+				int id = result.getInt("id_punto_evaluacion"); 
+                boolean cumple = result.getInt("cumple_punto") == 1;
+
+                unaEv.crearRespuesta(id, cumple);
+			}
+        }
+        catch(Exception ex){
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
 
 }
