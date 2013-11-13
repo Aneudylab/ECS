@@ -91,10 +91,20 @@ public class Evaluacion{
        return false;
    }
 
+   public String getComentario(int id){
+       for(Respuesta resp: listaRespuestas){
+           if(resp.getID() == id) return resp.getComentario();
+       }
+
+       return "";
+   }
    public int contarRespuestas(){
        return listaRespuestas.size();
    }
 
+   public void crearRespuesta(int tmpNum, String tmpComent){
+      listaRespuestas.add(new Respuesta(tmpNum,tmpComent));
+   }
    @Override
    public boolean equals(Object object){
        boolean isSame = false;

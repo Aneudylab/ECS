@@ -56,4 +56,24 @@ public class RespuestaDA{
         }
     }
 
+   public void reclamarRespuesta(int idEv, int idPlant, int idResp, String coment){
+       Object[] parametros;
+
+       String query = "UPDATE respuesta " // Respuesta
+                       + "SET es_reclamada = 1, " // 1 = true
+                       + "    comentario=  ? "
+                       + "WHERE id_evaluacion = ? "
+                       + "  AND id_plantilla = ? "
+                       + "  AND id_punto_evaluacion = ?";
+
+       parametros = new Object[]{coment, idEv, idPlant, idResp};
+
+       try {
+            DBManager.openDBConnection();
+			DBManager.ejecutarUpdate(query, parametros);
+       }
+       catch(Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+       }
+   }
 }

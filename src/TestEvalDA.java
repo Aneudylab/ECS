@@ -1,4 +1,5 @@
 import domain.Evaluacion;
+import domain.Plantilla;
 import DataAccess.EvaluacionDA;
 import java.util.Date;
 import java.util.ArrayList;
@@ -81,6 +82,22 @@ public class TestEvalDA extends BaseTest{
         Test("Ev's Resp", ev.getRespuesta(2) == false);
         Test("Ev's Resp", ev.getRespuesta(3) == true);
 
+        Evaluacion ev2 = new Evaluacion(1, newFecha("20/05/2008"));
+        ev2.crearRespuesta(1, "Prueba");
+        ev2.crearRespuesta(3, "Otra Prueba");
+        Test("Ev's Comment", ev2.getComentario(1).equals("Prueba"));
+        Test("Ev's Comment", ev2.getComentario(3).equals("Otra Prueba"));
+
+        Plantilla unaPlant = new Plantilla(1);
+        Evaluacion ev3 = new Evaluacion(2, unaPlant);
+
+        ev3.crearRespuesta(1, "Esto es una Prueba");
+        ev3.crearRespuesta(3, "Esto es otra Prueba");
+
+        eda.actualizarRevision(ev3);
+
+        Evaluacion ev4 = new Evaluacion(4, unaPlant);
+        eda.actualizarRevision(ev4);
     }
 
 

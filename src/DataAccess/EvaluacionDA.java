@@ -80,4 +80,39 @@ public class EvaluacionDA{
 
         return unaEv;
     }
+
+    // Actualiza en BD la revisión hecha a una Evaluación.
+    public String actualizarRevision(Evaluacion unaEv){
+        RespuestaDA unaRda = new RespuestaDA();
+        Object[] parametros;
+
+        int cantResp = unaEv.contarRespuestas();
+        int idEv = unaEv.getId();
+        int idPlant = unaEv.getIdPlantilla();
+
+        for(int i = 0; i < cantResp; ++i){
+            int idResp = unaEv.getIdRespuesta(i);
+            String coment = unaEv.getComentario(idResp);
+
+            unaRda.reclamarRespuesta(idEv, idPlant, idResp, coment);
+        }
+
+        int newEstado = cantResp > 0 ? 2 : 3; // 2 = Reclamada, 3 = Finalizada
+
+        String query =  "UPDATE evaluacion " + // Evaluacion
+                        "SET id_estado_evaluacion = ? " +
+                        "Where id_evaluacion = ?";
+
+        parametros = new Object[]{newEstado, idEv};
+
+        try {
+            DBManager.openDBConnection();
+            DBManager.ejecutarUpdate(query, parametros);
+        }
+        catch(Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+        return newEstado == 2 ? "Reclamada" : "Finalizada";
+    }
 }
