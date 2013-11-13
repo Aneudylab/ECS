@@ -24,7 +24,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
-import domain.ControlCardLayout;
 import domain.ControladorEvaluacion;
 import domain.ControladorSesion;
 
@@ -195,7 +194,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		listaRepresentates.add("Seleccione un Representante...........");
 		for (Map.Entry<Integer, String> entry : listaReps
 				.entrySet()) {
-			listaRepresentates.add(entry.getValue());
+			listaRepresentates.add(entry.getKey()+" - "+entry.getValue());
 
 		}
 		Combo = new JComboBox<>(listaRepresentates);
@@ -254,9 +253,9 @@ public class EvaluarRepresentanteForm implements ActionListener {
 
 	}
 
-	public void guardarEvaluacion(int idRep, HashMap<Integer, Boolean> Respuestas) {
-		//int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas); sustituir por Stub
-		int idEv = Stub.guardarEvaluacion(idRep, Respuestas);
+	public void guardarEvaluacion(HashMap<Integer, Boolean> Respuestas) {
+		int idRep = ControlCardLayout.darIdRepresentante();
+		int idEv = cEvaluacion.guardarEvaluacion(idRep, Respuestas); 
 		JOptionPane.showMessageDialog(null, "Se creó la evaluación " + idEv);
 
 	}
@@ -266,12 +265,11 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		if (e.getActionCommand() == GUARDAR) {
 			HashMap<Integer, Boolean> darResp = new HashMap<Integer, Boolean>();
 			for (int i = 0; i < panelEvaluacion.getComponentCount(); i++) {
-				JOptionPane.showMessageDialog(null, " ID : "+panelEvaluacion.getIDrespuesta().get(i).intValue());
 				darResp.put(panelEvaluacion.getIDrespuesta().get(i).intValue(),
 						panelEvaluacion.getRbtnSi().get(i).isSelected());
 
 			}
-			guardarEvaluacion(cSesion.getUsuarioActual().getID(), darResp);
+			guardarEvaluacion(darResp);
 			ocurtar();
 
 		}

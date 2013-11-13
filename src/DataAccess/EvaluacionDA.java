@@ -28,9 +28,10 @@ public class EvaluacionDA{
 			
         }catch(Exception ex){
         	System.out.println("Error: " + ex.getMessage());
+        	System.out.println("En EvaluacionDA");
         }
 		finally{
-		   DBManager.closeDBConnection();
+		   //DBManager.closeDBConnection();
 		}
 	}
 

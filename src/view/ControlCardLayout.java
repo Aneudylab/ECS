@@ -1,17 +1,13 @@
 
-package domain;
+package view;
 
 import java.awt.Component;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import view.EvaluarRepresentanteForm;
-import view.PanelRepresentante;
 
 
 /**
@@ -20,7 +16,7 @@ import view.PanelRepresentante;
  */
 public class ControlCardLayout implements ActionListener {
 
-	private EvaluarRepresentanteForm ventana;
+	private static EvaluarRepresentanteForm ventana;
 	private JPanel panelCentral;
 
 	public ControlCardLayout(EvaluarRepresentanteForm ventana) {
@@ -39,12 +35,18 @@ public class ControlCardLayout implements ActionListener {
 				ventana.getManejadorFlujo().show(ventana.getPanelCentral(), ""
 						+ (cartaActual));
 						
-				ventana.evaluarRepresentante(1);
+				ventana.evaluarRepresentante(darIdRepresentante());
 				ventana.getBtnGuardar().setEnabled(true);
 
 			}
 
 		}
 
+	}
+	public static int darIdRepresentante(){
+		int id;
+		String[] idStrin = ventana.getCombo().getSelectedItem().toString().split("-");
+		id = Integer.parseInt(idStrin[0].trim());
+		return id;
 	}
 }
