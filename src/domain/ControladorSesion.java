@@ -34,4 +34,8 @@ public class ControladorSesion {
 	public boolean validarEsSupervisor(){
         return usuarioActual.getRol().equals("Supervisor");
 	}
+	
+	public boolean validarEsRepresentante(){
+	    return usuarioActual.getRol().equals("Representante");
+	}
 }
