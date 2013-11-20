@@ -26,6 +26,17 @@ public class Evaluacion{
 		listaRespuestas = resp;	    
 	}
 	
+    public Evaluacion(int id, Date fechaCreada){
+        this.evaluacionid = id;
+        this.fechaCreada = fechaCreada;
+        listaRespuestas = new ArrayList<Respuesta>();
+    }
+
+    public Evaluacion(int id, Plantilla unaPlant){
+        this.evaluacionid = id;
+        this.unaPlantilla = unaPlant;
+        listaRespuestas = new ArrayList<Respuesta>();
+    } 
    //---------------------------------------------------
    //	Metodos
    //------------------------------------------------
@@ -56,6 +67,38 @@ public class Evaluacion{
 		unaResDA.guardarRespuesta(evaluacionid,unaPlantilla.getId(),
 		                          idPunto,cumple);
 	 }
+   }
+
+   public Date getFechaCreada(){
+       return this.fechaCreada;
+   }
+
+   public int getIdRespuesta(int index){
+       if(index < 0 || index > listaRespuestas.size()) return -1;
+       return listaRespuestas.get(index).getID();
+   }
+
+   public boolean getRespuesta(int id){
+       for(Respuesta resp: listaRespuestas){
+           if(resp.getID() == id) return resp.getCumplePunto();
+       }
+
+       return false;
+   }
+
+   public String getComentario(int id){
+       for(Respuesta resp: listaRespuestas){
+           if(resp.getID() == id) return resp.getComentario();
+       }
+
+       return "";
+   }
+   public int contarRespuestas(){
+       return listaRespuestas.size();
+   }
+
+   public void crearRespuesta(int tmpNum, String tmpComent){
+      listaRespuestas.add(new Respuesta(tmpNum,tmpComent));
    }
   
 }
