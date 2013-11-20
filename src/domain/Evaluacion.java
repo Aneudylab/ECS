@@ -1,14 +1,14 @@
-
 package domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import DataAccess.RespuestaDA;
-
 
 public class Evaluacion{
   
    private int evaluacionid;
    private Plantilla unaPlantilla;
+   private Date fechaCreada;
    private ArrayList<Respuesta> listaRespuestas;
   
    //---------------------------------------------------
