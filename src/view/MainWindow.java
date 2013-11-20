@@ -137,11 +137,10 @@ public class MainWindow extends JFrame implements ActionListener {
 		
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Generar Reporte ", JOptionPane.INFORMATION_MESSAGE);
+					"Revisar reporte ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (EVALUAR_REPRESENTANTE.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Evaluar Representante ", JOptionPane.INFORMATION_MESSAGE);
+			evalauarRepresentante();
 		}
 		if (ACTUALIZAR_EVALUACION.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
@@ -167,6 +166,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	      CrearPlantillaForm plantilla = new CrearPlantillaForm(cSesion.getUsuarioActual().getID());
 		  plantilla.mostrar();
 		  ocultar();
+		  
 	   }
 	   else{
 	      JOptionPane.showMessageDialog(null,
@@ -175,6 +175,23 @@ public class MainWindow extends JFrame implements ActionListener {
 									   JOptionPane.ERROR_MESSAGE);	
 	   }
 	}
+	private void evalauarRepresentante(){
+		boolean esSup  = cSesion.validarEsSupervisor();
+		
+		if(esSup){
+			EvaluarRepresentanteForm evaluar = new EvaluarRepresentanteForm();
+			evaluar.mostrar();
+			ocultar();
+			
+		}else{
+			JOptionPane.showMessageDialog(null,
+						              "Usted no tiene privilegios para evaluar representantes",
+						               "Usuario sin privilegio", 
+									   JOptionPane.ERROR_MESSAGE);	
+		}
+	
+	}
+	
 	
 	private void ocultar(){
 	   this.setVisible(false);

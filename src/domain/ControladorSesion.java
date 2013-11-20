@@ -24,11 +24,14 @@ public class ControladorSesion {
 	
 	// Metodo booleano que retorna True si el idRol es 1
 	public boolean validarEsAdministrador(){
-        return usuarioActual.getRol().equals("Administrador") ;
+        return usuarioActual.getRol().equals("Administrador");
 	}
-    
-	
+    	
 	public Usuario getUsuarioActual(){
 		return usuarioActual;
+	}
+	
+	public boolean validarEsSupervisor(){
+        return usuarioActual.getRol().equals("Supervisor");
 	}
 }
