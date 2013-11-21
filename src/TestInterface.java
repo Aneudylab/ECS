@@ -52,6 +52,6 @@ public class TestInterface extends BaseTest{
 
         cSec.iniciarSesion("pcuarto", "1234");
         listaEv = cEv.obtenerListaEvaluaciones();
-        Test("002 1 Evs for pcuarto", listaEv.size() == 2);
+        Test("002 1 Evs for pcuarto", listaEv.size() == 1);
     }
 }
