@@ -77,8 +77,9 @@ public class PlantillaDA{
             ResultSet result = DBManager.ejecutarQuery(query, parametros);
 
             if (result.next()) {
-		      int idPlan = result.getInt("id");
-			  plantilla.setId(idPlan);
+		      int idPlan = result.getInt("id_plantilla");
+              plantilla = new Plantilla(idPlan);
+
 			  puntoEvaDA.leerPuntosEvaluacion(plantilla);
             }
         } catch(Exception e){
@@ -106,8 +107,8 @@ public class PlantillaDA{
             ResultSet result = DBManager.ejecutarQuery(query, parametros);
 
             if (result.next()) {
-		      int idPlan = result.getInt("id");
-			  plantilla.setId(idPlan);
+		      int idPlan = result.getInt("id_plantilla");
+              plantilla = new Plantilla(idPlan);
             }
         } catch(Exception e){
             e.printStackTrace();
