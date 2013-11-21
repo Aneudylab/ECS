@@ -86,13 +86,13 @@ public class ControladorEvaluacion{
 		unRep.copiar(usuarioActual);
 		
 		ArrayList<Evaluacion> listaEva = unRep.obtenerListaEvaluaciones();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		
 		for(Evaluacion tmpEva : listaEva){
 			int tmpID = tmpEva.getId();
 			String tmpDate = dateFormat.format(tmpEva.getFechaCreada());
 			
-			tmpEvaluaciones.put(tmpID,tmpDate);
+			tmpEvaluaciones.put(tmpID,tmpID + " [" + tmpDate + "] ");
 			
 		}
 		
