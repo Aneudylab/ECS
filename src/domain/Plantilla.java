@@ -54,6 +54,19 @@ public class Plantilla{
         plantillaid = tmpID;
     }
 
+    public int getIdPunto(int index){
+        if(index < 0 || index > listaPtoEva.size()) return -1;
+        return listaPtoEva.get(index).getId();
+    }
+
+    public String getPuntoEvaluacion(int id) {
+        for (PuntoEvaluacion pto : listaPtoEva) {
+            if (pto.getId() == id) return pto.getDescripcion();
+        }
+
+        return "";
+    }
+
     /////////////////////////////////
     //Otros metodos
     //////////////////////////////////
