@@ -43,7 +43,7 @@ public class EvaluacionDA{
 
         String query =  "SELECT id_evaluacion, fecha_creada " +
                         "FROM evaluacion " +
-                        "WHERE id_representante = ?";
+                        "WHERE id_estado_evaluacion = 1 and id_representante = ?";
 
         parametros = new Object[]{idRepresentante};
 
