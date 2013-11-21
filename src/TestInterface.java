@@ -53,5 +53,13 @@ public class TestInterface extends BaseTest{
         cSec.iniciarSesion("pcuarto", "1234");
         listaEv = cEv.obtenerListaEvaluaciones();
         Test("002 1 Evs for pcuarto", listaEv.size() == 1);
+
+        cSec.iniciarSesion("ptercero", "1234");
+        listaEv = cEv.obtenerListaEvaluaciones();
+        Test("002 2 Evs for ptercero", listaEv.size() == 2);
+
+        for (Map.Entry entry : listaEv.entrySet()) {
+            System.out.println(entry.getKey() + " -- " + entry.getValue());
+        }
     }
 }
