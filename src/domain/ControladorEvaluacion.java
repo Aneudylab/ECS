@@ -108,7 +108,7 @@ public class ControladorEvaluacion{
 		Evaluacion evalActual = 
 		         new EvaluacionDA().leerEvaluacion(idEva);
 		
-		int cantReps = evalActual.getContarRespuestas();
+		int cantReps = evalActual.contarRespuestas();
 		
 		for(int i = 0 ; i < cantReps ; i++){
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
