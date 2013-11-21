@@ -93,6 +93,11 @@ public class Evaluacion{
 
        return "";
    }
+
+   public String getPuntoEvaluacion(int id) {
+       return unaPlantilla.getPuntoEvaluacion(id);
+   }
+
    public int contarRespuestas(){
        return listaRespuestas.size();
    }
