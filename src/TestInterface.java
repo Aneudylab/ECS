@@ -1,6 +1,7 @@
 import domain.*;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class TestInterface extends BaseTest{
     @Override
@@ -43,8 +44,10 @@ public class TestInterface extends BaseTest{
 
     private void TestControlEv() {
         Map<Integer, String> listaEv = new HashMap<Integer, String>();
+        List<Map<String , String>> ev ;
         ControladorEvaluacion cEv = new ControladorEvaluacion();
         ControladorSesion cSec = new ControladorSesion();
+        HashMap<Integer, String> rec = new HashMap<Integer, String>();
 
         cSec.iniciarSesion("alabour", "1234");
         listaEv = cEv.obtenerListaEvaluaciones();
@@ -56,10 +59,34 @@ public class TestInterface extends BaseTest{
 
         cSec.iniciarSesion("ptercero", "1234");
         listaEv = cEv.obtenerListaEvaluaciones();
-        Test("002 2 Evs for ptercero", listaEv.size() == 2);
+        Test("003 2 Evs for ptercero", listaEv.size() == 2);
 
         for (Map.Entry entry : listaEv.entrySet()) {
             System.out.println(entry.getKey() + " -- " + entry.getValue());
         }
+
+        ev = cEv.obtenerEvaluacion(7);
+
+        Test("004 Ev has 3 ptos", ev.size() == 3);
+        
+        for (Map<String , String> pto : ev) {
+            System.out.print("| " + pto.get("id") + "  ");
+            System.out.print("|  " + pto.get("pto") + "  ");
+            System.out.print("|  " + pto.get("resp") + " |");
+            System.out.println();
+        }
+
+        ev = cEv.obtenerEvaluacion(1);
+
+        for (Map<String , String> pto : ev) {
+            System.out.print("| " + pto.get("id") + "  ");
+            System.out.print("|  " + pto.get("pto") + "  ");
+            System.out.print("|  " + pto.get("resp") + " |");
+            System.out.println();
+        }
+
+        rec.put(2, "Entiendo que está mal evaluada");
+
+        cEv.guardarRevision(7, rec);
     }
 }
