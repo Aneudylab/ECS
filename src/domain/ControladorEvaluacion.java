@@ -86,7 +86,7 @@ public class ControladorEvaluacion{
 		unRep.copiar(usuarioActual);
 		
 		ArrayList<Evaluacion> listaEva = unRep.obtenerListaEvaluaciones();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		
 		for(Evaluacion tmpEva : listaEva){
 			int tmpID = tmpEva.getId();
@@ -111,7 +111,7 @@ public class ControladorEvaluacion{
 		int cantReps = evalActual.getContarRespuestas();
 		
 		for(int i = 0 ; i < cantReps ; i++){
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		    Map<String,String> tmpPair = new HashMap<String,String>();
 			
 			int id = evalActual.getIdRespuesta(i);
