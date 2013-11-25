@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -13,9 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import domain.Usuario;
 import domain.ControladorSesion;
-import domain.ControladorPlantilla;
+
 
 
 public class MainWindow extends JFrame implements ActionListener {
@@ -112,12 +109,10 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnRevisarEvaluacion.addActionListener(this);
 		add(btnRevisarEvaluacion, gbc);
 
-		btnCrearUsuarios = new JButton(
-				"Crear Usuario");
+		btnCrearUsuarios = new JButton("Crear Usuario");
 		btnCrearUsuarios.setBounds(100, 100, 100, 100);
 		gbc.gridy = 7;
-		btnCrearUsuarios
-				.setActionCommand(CREAR_USUARIO);
+		btnCrearUsuarios.setActionCommand(CREAR_USUARIO);
 		btnCrearUsuarios.addActionListener(this);
 		add(btnCrearUsuarios, gbc);
 		
@@ -128,7 +123,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apendice de metodo generado automaticamente
 		String comando = evento.getActionCommand();
 
 		if (CREAR_PLANTILLA.equals(comando)) {
@@ -140,15 +135,14 @@ public class MainWindow extends JFrame implements ActionListener {
 					"Revisar reporte ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (EVALUAR_REPRESENTANTE.equals(comando)) {
-			evalauarRepresentante();
+			evaluarRepresentante();
 		}
 		if (ACTUALIZAR_EVALUACION.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Actualizar Evaluacion  ", JOptionPane.INFORMATION_MESSAGE);
+			actualizarEvaluacion(); 
 		}
 		if (REVISAR_EVALUACION.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Revisar Evaluar ", JOptionPane.INFORMATION_MESSAGE);
+					"Revisar Evaluacion", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (CREAR_USUARIO.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
@@ -170,12 +164,12 @@ public class MainWindow extends JFrame implements ActionListener {
 	   }
 	   else{
 	      JOptionPane.showMessageDialog(null,
-						              "Usted no tiene privilegios para crear plantilla",
+						               "Usted no tiene privilegios para crear plantilla",
 						               "Usuario sin privilegio", 
 									   JOptionPane.ERROR_MESSAGE);	
 	   }
 	}
-	private void evalauarRepresentante(){
+	private void evaluarRepresentante(){
 		boolean esSup  = cSesion.validarEsSupervisor();
 		
 		if(esSup){
@@ -185,13 +179,30 @@ public class MainWindow extends JFrame implements ActionListener {
 			
 		}else{
 			JOptionPane.showMessageDialog(null,
-						              "Usted no tiene privilegios para evaluar representantes",
+						               "Usted no tiene privilegios para evaluar representantes",
 						               "Usuario sin privilegio", 
-									   JOptionPane.ERROR_MESSAGE);	
+									    JOptionPane.ERROR_MESSAGE);	
 		}
 	
 	}
 	
+	// Invoca la ventana de actualizacion
+	private void actualizarEvaluacion(){
+	    boolean esSup = cSesion.validarEsSupervisor();
+
+	    if(esSup){
+	    	ActualizarEvaluacionForm actualizar = new ActualizarEvaluacionForm();
+	        actualizar.mostrar();
+	        this.ocultar();
+	    }
+	    else{
+	    	JOptionPane.showMessageDialog(null,
+		                               "Usted no tiene privilegios para actualizar evaluaciones",
+		                               "Usuario sin privilegio", 
+					                    JOptionPane.ERROR_MESSAGE);
+	    }
+	}
+
 	
 	private void ocultar(){
 	   this.setVisible(false);
