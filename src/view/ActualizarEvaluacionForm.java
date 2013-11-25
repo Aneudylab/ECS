@@ -102,7 +102,7 @@ public class ActualizarEvaluacionForm extends JFrame
 			panelCentral.add(scrollPane);
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon("resources/titulo2.jpg"));
+			label.setIcon(new ImageIcon("../resources/titulo2.jpg"));
 			label.setBounds(44, 11, 205, 277);
 			panelCentral.add(label);
 		}
