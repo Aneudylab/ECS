@@ -138,21 +138,21 @@ public class EvaluacionForm extends JFrame implements ActionListener {
 			 lblPregunta.setBounds(48, suma, 402, 14);
 			 panelCentral.add(lblPregunta);
 			 
-			// Las respuestas
+			 // Las respuestas
 			 lblRespuesta[k] = new JLabel(ptos.get("resp")); 
 			 lblRespuesta[k].setBounds(456, suma, 47, 23);
 			 panelCentral.add(lblRespuesta[k]);
 			 
-			// Los comentarios
+			 // Los comentarios
 			 textAreaComent = new TextArea(ptos.get("coment")); 
-		     textAreaComent.setFont(new Font("Calibri", Font.BOLD, 11));
-		     textAreaComent.setBackground(Color.WHITE);
-		     textAreaComent.setEditable(false);
-		     textAreaComent.setBounds(543, suma, 193, 42);
-		     panelCentral.add(textAreaComent);
+		         textAreaComent.setFont(new Font("Calibri", Font.BOLD, 11));
+		         textAreaComent.setBackground(Color.WHITE);
+		         textAreaComent.setEditable(false);
+		         textAreaComent.setBounds(543, suma, 193, 42);
+		         panelCentral.add(textAreaComent);
 		     
-		     // Las casillas de verificacion
-		     chk1[k] = new JCheckBox("Si");
+		         // Las casillas de verificacion
+		         chk1[k] = new JCheckBox("Si");
 			 chk1[k].setBackground(Color.WHITE);
 			 chk1[k].setBounds(805, suma, 47, 23);
 			 chk1[k].addActionListener(this);
@@ -192,15 +192,13 @@ public class EvaluacionForm extends JFrame implements ActionListener {
 			   if ( chk1[k].isSelected() ){
 				   Integer idPunto = Integer.parseInt(lblId[k].getText());
 				   Boolean respuesta = lblRespuesta[k].getText().equalsIgnoreCase("No")? false:true; 
-			       recProcedentes.put(idPunto, respuesta);
+			           recProcedentes.put(idPunto, respuesta);
 			   }
 		    }
-		    if(recProcedentes.isEmpty()){
-		    	JOptionPane.showMessageDialog(null, "Debes haber seleccionado!");	
-		    }else{
+		    
 		    	if( JOptionPane.showConfirmDialog(null,
 						"Esta seguro que desea guardar los cambios?",
-		                "Confirmando Actualizacion", 
+		                                "Confirmando Actualizacion", 
 		                JOptionPane.YES_NO_OPTION)  == JOptionPane.YES_OPTION)
 				    {   
 				    	actualizarEvaluacion(id,recProcedentes);
@@ -208,13 +206,12 @@ public class EvaluacionForm extends JFrame implements ActionListener {
 				    	ActualizarEvaluacionForm actualizar = new ActualizarEvaluacionForm();
 				        actualizar.mostrar();
 				    }
-		    }
-		    
+				    
 		}	
 		if ( evento.getSource() == btnCancelar ){
 			ocultar();
 			ActualizarEvaluacionForm actualizar = new ActualizarEvaluacionForm();
-	        actualizar.mostrar();
+	                actualizar.mostrar();
 		}
 		
 	}
