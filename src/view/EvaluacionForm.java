@@ -199,7 +199,7 @@ public class EvaluacionForm extends JFrame implements ActionListener {
 		    	if( JOptionPane.showConfirmDialog(null,
 						"Esta seguro que desea guardar los cambios?",
 		                                "Confirmando Actualizacion", 
-		                JOptionPane.YES_NO_OPTION)  == JOptionPane.YES_OPTION)
+		                                 JOptionPane.YES_NO_OPTION)  == JOptionPane.YES_OPTION)
 				    {   
 				    	actualizarEvaluacion(id,recProcedentes);
 				    	ocultar();
