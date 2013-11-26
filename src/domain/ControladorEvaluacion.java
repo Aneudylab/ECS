@@ -111,7 +111,7 @@ public class ControladorEvaluacion{
 		int cantReps = evalActual.contarRespuestas();
 		
 		for(int i = 0 ; i < cantReps ; i++){
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		    Map<String,String> tmpPair = new HashMap<String,String>();
 			
 			int id = evalActual.getIdRespuesta(i);
