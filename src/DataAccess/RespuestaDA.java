@@ -116,7 +116,9 @@ public class RespuestaDA{
             + "  AND id_plantilla = ? "
             + "  AND id_punto_evaluacion = ?";
 
-        boolean cpunto = !cumple;
+        // cpunto tomará el valor opuesto al actual en la respuesta
+        int cpunto = cumple? 0 : 1; // Si es true, cambia a false = 0
+                                    // Si es false cambia a true = 1
         parametros = new Object[]{cpunto, idEv, idPlant, idResp};
 
         try {

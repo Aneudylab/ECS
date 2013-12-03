@@ -118,4 +118,7 @@ public class Evaluacion{
         return listaRespuestas.size();
     }
 
+    public Representante getRepresentante() {
+        return representante;
+    }
 }
