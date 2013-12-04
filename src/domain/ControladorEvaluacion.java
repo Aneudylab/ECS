@@ -204,7 +204,7 @@ public class ControladorEvaluacion{
 	  return ptosEv; 
 	}
 	
-	public String actualizarEvaluacion (int idEva,HashMap<Integer,Boolean> recProc){
+	public void actualizarEvaluacion (int idEva,HashMap<Integer,Boolean> recProc){
 	   
 	   EvaluacionDA unaEvaDA = new EvaluacionDA();
 	   Plantilla unaPlant = unaEvaDA.leerSoloPlantilla(idEva);
@@ -216,7 +216,8 @@ public class ControladorEvaluacion{
 		  unaEva.crearRespuesta(num,cumple);
 		  
 	   }	  
-	   return unaEvaDA.actualizarEvaluacion(unaEva);
+	  
+	   unaEvaDA.actualizarEvaluacion(unaEva);
 	}
 	
 }
