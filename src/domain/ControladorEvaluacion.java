@@ -183,7 +183,7 @@ public class ControladorEvaluacion{
 	  
 	  Evaluacion unaEva = unEvaluacionDA.leerEvaluacionReclamada(idEva);
 	  
-	  int cantRespuesta = unaEva.getContarRespuestas();
+	  int cantRespuesta = unaEva.contarRespuestas();
 	  
 	  for(int i = 0; i < cantRespuesta; i++)
 	  {
@@ -207,7 +207,9 @@ public class ControladorEvaluacion{
 	public void actualizarEvaluacion (int idEva,HashMap<Integer,Boolean> recProc){
 	   
 	   EvaluacionDA unaEvaDA = new EvaluacionDA();
-	   Plantilla unaPlant = unaEvaDA.leerSoloPlantilla(idEva);
+       PlantillaDA pda = new PlantillaDA();
+
+	   Plantilla unaPlant = pda.leerSoloPlantilla(idEva);
 	   Evaluacion unaEva = new Evaluacion (idEva,unaPlant);
 	   
 	   for (Map.Entry<Integer,Boolean> tmpEntry : recProc.entrySet() ){
