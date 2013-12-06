@@ -30,7 +30,7 @@ public class Administrador extends Usuario{
 		
 		Plantilla unaPlant = new Plantilla(listaPtosEv);
 
-	    new PlantillaDA().guardarPlantilla(unaPlant, this.getID());
+	    new PlantillaDA().guardarPlantilla(unaPlant, this.getId());
 	    unaPlant.guardarPuntosEvaluacion();
 
 	    int plantillaId = unaPlant.getId();
@@ -44,15 +44,23 @@ public class Administrador extends Usuario{
 	// Metodo que crea un nuevo Usario 
 	//--------------------------------------------------------------------
 	
-/*	public int crearUsuario(String nombre, 
-			                 Rol rol,
-			                 String clave, 
-			                 String nombreUsuario,
-			                 int idSupervisor){
-		
-		Usuario usuario = new Usuario(nombre, rol, clave, nombreUsuario); 
-		new UsuarioDA().guardar(usuario, this.getID(), idSupervisor); 
-	   	
-	    return usuario.getID();	
-	}*/
+    /**
+     * Guarda un Usuario en la BD
+	 * @param nombre Nombre del usuario...
+	 * @param rol Rol del usuario...
+	 * @param clave Clave...
+	 * @param nombreUsuario Nombre Inicio de Sesion...
+	 * @param idSupervisor id del supervisor...
+     *  
+	 * @return object
+     **/
+    public int crearUsuario(String nombre, Rol rol, String clave, String nombreUsuario, int idSupervisor) {
+        UsuarioDA uda = new UsuarioDA();
+		Usuario unUsr = new Usuario(nombre, rol, clave, nombreUsuario); 
+
+        uda.guardarUsuario(unUsr, getId(), idSupervisor);
+
+        return unUsr.getId();
+
+    }
 }
