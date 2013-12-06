@@ -189,9 +189,9 @@ public class ControladorEvaluacion{
 	  {
 	     HashMap <String,String> tmpMap = new HashMap<String,String>();
    	     int id = unaEva.getIdRespuesta(i);
-		 String resp = (unaEva.getRespuesta(i)) ? "Si" : "No"; 
-		 String pto = unaEva.getPuntoEvaluacion(i);
-		 String coment = unaEva.getComentario(i);
+		 String resp = (unaEva.getRespuesta(id)) ? "Si" : "No"; 
+		 String pto = unaEva.getPuntoEvaluacion(id);
+		 String coment = unaEva.getComentario(id);
 	  	 
 		 tmpMap.put("id",String.valueOf(id));
 		 tmpMap.put("pto",pto);
