@@ -167,7 +167,7 @@ public class EvaluacionForm extends JFrame implements ActionListener {
 	
 	//envia a la clase controladora el id de evaluacion y los puntos actualizados
 	public void actualizarEvaluacion(int idEval, HashMap<Integer, Boolean> recProcedentes){
-	    //cEvaluacion.actualizarEvaluacion(idEval, recProcedentes);
+	    cEvaluacion.actualizarEvaluacion(idEval, recProcedentes);
 		JOptionPane.showMessageDialog(null, "Evaluacion " + idEval + " actualizada!");
 	}
 	

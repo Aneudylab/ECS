@@ -110,8 +110,7 @@ public class ActualizarEvaluacionForm extends JFrame
 		
 		// Metodo que muestra las evaluaciones reclamadas
 		public void mostrar(){
-		    //listaEvs = cEvaluacion.ObtenerEvaluacionesReclamadas();
-			listaEvs = Stub.darRepresentantes();
+		    listaEvs = cEvaluacion.obtenerEvaluacionesReclamadas();
 		    mostrarListaEvaluaciones(listaEvs);
 		    setVisible(true);
 		}	
@@ -132,8 +131,7 @@ public class ActualizarEvaluacionForm extends JFrame
 		
 		//Obtiene la evaluacion seleccionada y la muestra
 		public void obtenerEvaluacion(int idEv){
-			//puntosEv = cEvaluacion.ObtenerEvaluacionReclamada(idEv);
-			puntosEv = Stub.darEvaluacion6();
+			puntosEv = cEvaluacion.obtenerEvaluacionReclamada(idEv);
 			ocultar();
 			EvaluacionForm form = new EvaluacionForm(list.getSelectedValue(),idEv);
 		    form.mostrarEvaluacion(puntosEv);
