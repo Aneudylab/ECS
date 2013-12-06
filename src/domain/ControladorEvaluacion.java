@@ -150,5 +150,74 @@ public class ControladorEvaluacion{
 		return nuevoEstado;
 	}
 	
+	public HashMap<Integer,String> obtenerEvaluacionesReclamadas(){
+	
+	   Usuario usuarioActual = new ControladorSesion().getUsuarioActual();
+	   SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	   
+	   Supervisor unSup = new Supervisor();
+	   unSup.copiar(usuarioActual);
+	   
+	   ArrayList<Evaluacion> listaEv = unSup.obtenerEvaluacionesReclamadas();
+       HashMap <Integer,String> tmpMap = new HashMap<Integer,String>();
+	   
+		for(Evaluacion tmpEva : listaEv){
+		   
+		   int id = tmpEva.getId();
+		   String evFormateada = tmpEva.getId() + "[ " + 
+		                         dateFormat.format(tmpEva.getFechaCreada()) +
+		                         " | " + tmpEva.getRepresentante() + " ]";
+		   
+		   tmpMap.put(id,evFormateada);
+		}
+		
+		return tmpMap;
+ 	}
+	
+	public ArrayList<HashMap<String,String>> obtenerEvaluacionReclamada(int idEva){
+	  
+	  ArrayList <HashMap<String, String>> ptosEv = 
+	                                      new ArrayList<HashMap<String, String>>();
+										  
+	  EvaluacionDA unEvaluacionDA = new EvaluacionDA();
+	  
+	  Evaluacion unaEva = unEvaluacionDA.leerEvaluacionReclamada(idEva);
+	  
+	  int cantRespuesta = unaEva.getContarRespuestas();
+	  
+	  for(int i = 0; i < cantRespuesta; i++)
+	  {
+	     HashMap <String,String> tmpMap = new HashMap<String,String>();
+   	     int id = unaEva.getIdRespuesta(i);
+		 String resp = (unaEva.getRespuesta(i)) ? "Si" : "No"; 
+		 String pto = unaEva.getPuntoEvaluacion(i);
+		 String coment = unaEva.getComentario(i);
+	  	 
+		 tmpMap.put("id",String.valueOf(id));
+		 tmpMap.put("pto",pto);
+		 tmpMap.put("resp", resp);
+		 tmpMap.put("coment",coment);
+		 
+		 ptosEv.add(tmpMap);
+		 
+	  }
+	  return ptosEv; 
+	}
+	
+	public void actualizarEvaluacion (int idEva,HashMap<Integer,Boolean> recProc){
+	   
+	   EvaluacionDA unaEvaDA = new EvaluacionDA();
+	   Plantilla unaPlant = unaEvaDA.leerSoloPlantilla(idEva);
+	   Evaluacion unaEva = new Evaluacion (idEva,unaPlant);
+	   
+	   for (Map.Entry<Integer,Boolean> tmpEntry : recProc.entrySet() ){
+	      int num = tmpEntry.getKey();
+		  boolean cumple = tmpEntry.getValue();
+		  unaEva.crearRespuesta(num,cumple);
+		  
+	   }	  
+	  
+	   unaEvaDA.actualizarEvaluacion(unaEva);
+	}
 	
 }
