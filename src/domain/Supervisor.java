@@ -18,12 +18,15 @@ public class Supervisor extends Usuario{
 	   super (id,nombre,rol);
 	}
 	
+    public Supervisor(int id, String nombre) {
+        super(id, nombre);
+    }
 	/////////////////////////////////
 	//		Metodos
 	///////////////////////////////
 	public ArrayList<Representante> obtenerListaRepresentantes(){
 	   RepresentanteDA repre = new RepresentanteDA();
-	   return repre.leerRepresentantes(super.getID());
+	   return repre.leerRepresentantes(super.getId());
 	} 
 	
 	public int crearEvaluacion(Plantilla plantillaActual,int idRep, 
@@ -32,7 +35,7 @@ public class Supervisor extends Usuario{
 	  Evaluacion unEva = new Evaluacion (plantillaActual,respuestas);
 	  EvaluacionDA tmpEvaDA = new EvaluacionDA();
 	  
-	  tmpEvaDA.guardarEvaluacion(super.getID(),idRep,unEva);
+	  tmpEvaDA.guardarEvaluacion(super.getId(),idRep,unEva);
 	  unEva.guardarRespuestas();
 	  
 	  return unEva.getId();
@@ -40,9 +43,9 @@ public class Supervisor extends Usuario{
     
 	//@override
 	public void copiar(Usuario usr){
-	   super.setID(usr.getID());
+	   super.setId(usr.getId());
 	   super.setNombre(usr.getNombre());
-	   super.setRol(new Rol(usr.getRolID(),usr.getRol()));
+	   super.setRol(new Rol(usr.getIdRol(),usr.getRol()));
 	}
 	
 	
