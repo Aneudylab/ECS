@@ -8,7 +8,7 @@ public class Usuario {
 	// Atributos
 	// -----------------------------------------------------------------
 
-	private int usuarioID;
+	private int idUsuario;
 	private String nombreUsuario;
 	private String clave;
 	private String nombre;
@@ -23,7 +23,7 @@ public class Usuario {
 	
 	public Usuario(String nombreUsu, String cla) {
 
-		usuarioID = 0;
+		idUsuario = 0;
 		nombreUsuario = nombreUsu;
 		clave = cla;
 		nombre = "N/A";
@@ -32,45 +32,29 @@ public class Usuario {
 	}
 
 	public Usuario(int usrID,String nom){
-	    usuarioID = usrID;
+	    idUsuario = usrID;
 	    nombre = nom;
 	}
 	
 	public Usuario(int id, String usrNom, Rol usrRol){
-		usuarioID = id;
+		idUsuario = id;
 		nombre = usrNom;
 		rol = usrRol;	
 	}
 	
-	public Usuario(String nom, String cla, Rol usrRol) {
-		nombre = nom;
-		clave = cla;
-		rol = usrRol;
-	}
-	
+    public Usuario(String nombre, Rol rol, String clave, String nombreUsuario) { 
+		this.nombre = nombre;
+		this.rol = rol;
+		this.clave = clave;
+		this.nombreUsuario = nombreUsuario;
+    }
 
-	public Usuario(String nombreUsu,String cla,String nom,Rol usrRol){
- 
-       nombreUsuario = nombreUsu;
-	   clave = cla;
-	   nombre = nom;
-	   rol = usrRol;
-    }	
-	
-	public Usuario(int usrID,String nombreUsu,String cla,String nom,Rol ro){
-	   usuarioID = usrID;
-	   nombreUsuario = nombreUsu;
-	   clave = cla;
-	   nombre = nom;
-	   rol = ro;
-	}
-		
 	// -----------------------------------------------------------------
 	// Setters y Getters
 	// -----------------------------------------------------------------
 
-	public int getID() {
-		return usuarioID;
+	public int getId() {
+		return idUsuario;
 	}
 
 	public String getNombreUsuario() {
@@ -89,12 +73,12 @@ public class Usuario {
 		 return rol.getDescripcion();
 	}
 	
-	public int getRolID(){
+	public int getIdRol(){
 	   return rol.getId();
 	}
 	
-	public void setID(int usuarioID2) {
-		usuarioID = usuarioID2;
+	public void setId(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	
 	public void setNombre(String nombre2){
@@ -109,7 +93,7 @@ public class Usuario {
    //Otros metodos
    //////////////////////////////////
     public void copiar(Usuario usr){
-        usuarioID = usr.getID();
+        idUsuario = usr.getId();
         nombre = usr.getNombre();
     }
 }
