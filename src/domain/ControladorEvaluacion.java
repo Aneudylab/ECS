@@ -33,7 +33,7 @@ public class ControladorEvaluacion{
 	                            unSupervisor.obtenerListaRepresentantes();
        
 	   for(Representante tmpRep: listaRepr){
-		   listRepresentantes.put(tmpRep.getID(),tmpRep.getNombre());
+		   listRepresentantes.put(tmpRep.getId(),tmpRep.getNombre());
 	    }
 		
 		return listRepresentantes;

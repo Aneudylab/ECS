@@ -18,7 +18,7 @@ public class Representante extends Usuario {
         ArrayList<Evaluacion> listEvals = new ArrayList<Evaluacion>();
         EvaluacionDA unEvda = new EvaluacionDA();
 
-        int idRepresentante = this.getID();
+        int idRepresentante = this.getId();
 
         listEvals = unEvda.leerEvaluaciones(idRepresentante);
 
