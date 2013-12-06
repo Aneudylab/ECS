@@ -56,4 +56,38 @@ public class UsuarioDA {
             return usr;
         }
     }
+
+    /**
+     * Guarda un usuario nuevo en la BD
+	 * @param unUsr usage...
+	 * @param idAdmin usage...
+	 * @param idSup usage...
+     *  
+     **/
+    public void guardarUsuario(Usuario unUsr, int idAdmin, int idSup) {
+        Object[] parametros;
+
+        String query = "INSERT INTO USUARIO " +
+                       "    (NOMBRE, NOMBRE_USUARIO, CLAVE, ID_SUPERVISOR, ID_USUARIO_CREADOR, ID_ROL) " +
+                       "VALUES " +
+                       "    (?,?,?,?,?,?) ";
+        
+        parametros = new Object[]{
+            unUsr.getNombre(),
+            unUsr.getNombreUsuario(),
+            unUsr.getClave(),
+            unUsr.getIdRol() == 3? idSup : null,
+            idAdmin,
+            unUsr.getIdRol()
+        };
+        try{
+
+            DBManager.openDBConnection();
+            int id = DBManager.executeQueryGeneratedKeys(query, parametros);
+            unUsr.setId(id);
+
+        }catch(Exception ex){
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
 }
