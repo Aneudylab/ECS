@@ -166,7 +166,7 @@ public class ControladorEvaluacion{
 		   int id = tmpEva.getId();
 		   String evFormateada = tmpEva.getId() + "[ " + 
 		                         dateFormat.format(tmpEva.getFechaCreada()) +
-		                         " | " + tmpEva.getRepresentante() + " ]";
+		                         " | " + tmpEva.getRepresentante().getNombre() + " ]";
 		   
 		   tmpMap.put(id,evFormateada);
 		}
