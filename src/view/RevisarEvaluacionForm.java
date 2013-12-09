@@ -78,9 +78,9 @@ public class RevisarEvaluacionForm extends JFrame
 		contentPane.add(panelSur, BorderLayout.SOUTH);
 		panelSur.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
-	    btnRevisar = new JButton("Revisar");
-	    btnRevisar.setToolTipText("Revisar Evaluacion");
-	    btnRevisar.addActionListener(this);
+	        btnRevisar = new JButton("Revisar");
+	        btnRevisar.setToolTipText("Revisar Evaluacion");
+	        btnRevisar.addActionListener(this);
 		panelSur.add(btnRevisar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -147,8 +147,8 @@ public class RevisarEvaluacionForm extends JFrame
 		puntosEv = cEvaluacion.obtenerEvaluacion(idEv);
 		ocultar();
 		RevisionForm form = new RevisionForm(list.getSelectedValue(),idEv);
-	    form.mostrarEvaluacion(puntosEv);
-	    form.mostrar();
+	        form.mostrarEvaluacion(puntosEv);
+	        form.mostrar();
 	   
 	    
 	}
