@@ -145,11 +145,27 @@ public class MainWindow extends JFrame implements ActionListener {
 					"Revisar Evaluacion", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (CREAR_USUARIO.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Crear Usuario ",
-					JOptionPane.INFORMATION_MESSAGE);
+            crearNuevoUsuario();
 		}
 
+	}
+
+	private void crearNuevoUsuario (){
+	   
+	   boolean esAdmin = cSesion.validarEsAdministrador();
+	   
+	   if(esAdmin){
+	      CrearUsuarioForm usuarioForm = new CrearUsuarioForm();
+		  usuarioForm.mostrar();
+		  ocultar();
+		  
+	   }
+	   else{
+	      JOptionPane.showMessageDialog(null,
+						              "Usted no tiene privilegios para crear nuevos usuarios",
+						               "Usuario sin privilegio", 
+									   JOptionPane.ERROR_MESSAGE);	
+	   }
 	}
 	
 	private void CrearNuevaPlantilla (){
