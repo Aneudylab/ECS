@@ -41,6 +41,17 @@ public class Supervisor extends Usuario{
 	  return unEva.getId();
 	}
     
+    /**
+     * Retorna una lista de las evaluaciones reclamadas hecha por los
+     * representantes que se reportan a este supervisor
+     *  
+	 * @return object
+     **/
+    public ArrayList<Evaluacion> obtenerEvaluacionesReclamadas() {
+        EvaluacionDA eda = new EvaluacionDA();
+        return eda.leerEvaluacionesReclamadas(getID());
+    }
+
 	//@override
 	public void copiar(Usuario usr){
 	   super.setId(usr.getId());
