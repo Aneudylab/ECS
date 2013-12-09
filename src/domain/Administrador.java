@@ -54,9 +54,9 @@ public class Administrador extends Usuario{
      *  
 	 * @return object
      **/
-    public int crearUsuario(String nombre, Rol rol, String clave, String nombreUsuario, int idSupervisor) {
+    public int crearUsuario(String nombre, int idRol, String clave, String nombreUsuario, int idSupervisor) {
         UsuarioDA uda = new UsuarioDA();
-		Usuario unUsr = new Usuario(nombre, rol, clave, nombreUsuario); 
+		Usuario unUsr = new Usuario(nombre, new Rol(idRol, ""), clave, nombreUsuario); 
 
         uda.guardarUsuario(unUsr, getId(), idSupervisor);
 

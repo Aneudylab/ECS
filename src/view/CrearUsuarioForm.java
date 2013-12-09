@@ -32,6 +32,7 @@ public class CrearUsuarioForm extends JFrame{
 	private JButton aceptar;
 	private JButton cancelar;
 	
+    private ControladorUsuario cUsuario;
 	HashMap<Integer,String> listaRoles;
 	HashMap<Integer,String> listaSups;
 
@@ -58,6 +59,7 @@ public class CrearUsuarioForm extends JFrame{
 		this.setSize(400,400);
 		this.setResizable(false);
 		
+        cUsuario = new ControladorUsuario();
 	}
 	
 	private JPanel crearPanelSuperior(){

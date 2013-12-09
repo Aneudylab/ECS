@@ -49,7 +49,7 @@ public class Supervisor extends Usuario{
      **/
     public ArrayList<Evaluacion> obtenerEvaluacionesReclamadas() {
         EvaluacionDA eda = new EvaluacionDA();
-        return eda.leerEvaluacionesReclamadas(getID());
+        return eda.leerEvaluacionesReclamadas(getId());
     }
 
 	//@override
