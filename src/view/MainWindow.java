@@ -141,8 +141,7 @@ public class MainWindow extends JFrame implements ActionListener {
 			actualizarEvaluacion(); 
 		}
 		if (REVISAR_EVALUACION.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Revisar Evaluacion", JOptionPane.INFORMATION_MESSAGE);
+			revisarEvaluacion();
 		}
 		if (CREAR_USUARIO.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
@@ -202,13 +201,33 @@ public class MainWindow extends JFrame implements ActionListener {
 					                    JOptionPane.ERROR_MESSAGE);
 	    }
 	}
+	
+	// Invoca la ventana de Revision
+	private void revisarEvaluacion(){
+	    boolean esRep = cSesion.validarEsRepresentante();
+
+	    if(esRep){
+	    	RevisarEvaluacionForm revisar = new RevisarEvaluacionForm();
+	        revisar.mostrar();
+	        this.ocultar();
+	    }
+	    else{
+	    	JOptionPane.showMessageDialog(null,
+		                               "Usted no tiene privilegios para revisar evaluaciones",
+		                               "Usuario sin privilegio", 
+					                    JOptionPane.ERROR_MESSAGE);
+	    }
+	}
 
 	
 	private void ocultar(){
 	   this.setVisible(false);
     }
+	
+	
 	// Metodo que hace visible la ventana principal
 	public void mostrar(){
 	   this.setVisible(true);
 	}
 }
+
