@@ -162,7 +162,8 @@ public class MainWindow extends JFrame implements ActionListener {
 	   }
 	   else{
 	      JOptionPane.showMessageDialog(null, "Usted no tiene privilegios para crear plantilla",
-	      "Usuario sin privilegio", JOptionPane.ERROR_MESSAGE);	
+	                                          "Usuario sin privilegio", 
+	                                          JOptionPane.ERROR_MESSAGE);	
 	   }
 	}
 	private void evaluarRepresentante(){
@@ -212,7 +213,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	    	JOptionPane.showMessageDialog(null,
 		                               "Usted no tiene privilegios para revisar evaluaciones",
 		                               "Usuario sin privilegio", 
-					        JOptionPane.ERROR_MESSAGE);
+					       JOptionPane.ERROR_MESSAGE);
 	    }
 	}
 
