@@ -132,7 +132,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		
 		if (GENERAR_REPORTE.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Revisar reporte ", JOptionPane.INFORMATION_MESSAGE);
+			"Revisar reporte ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (EVALUAR_REPRESENTANTE.equals(comando)) {
 			evaluarRepresentante();
@@ -145,8 +145,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		}
 		if (CREAR_USUARIO.equals(comando)) {
 			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Crear Usuario ",
-					JOptionPane.INFORMATION_MESSAGE);
+			"Crear Usuario ", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}
@@ -157,15 +156,13 @@ public class MainWindow extends JFrame implements ActionListener {
 	   
 	   if(esAdmin){
 	      CrearPlantillaForm plantilla = new CrearPlantillaForm(cSesion.getUsuarioActual().getID());
-		  plantilla.mostrar();
-		  ocultar();
+	      plantilla.mostrar();
+	      ocultar();
 		  
 	   }
 	   else{
-	      JOptionPane.showMessageDialog(null,
-						               "Usted no tiene privilegios para crear plantilla",
-						               "Usuario sin privilegio", 
-									   JOptionPane.ERROR_MESSAGE);	
+	      JOptionPane.showMessageDialog(null, "Usted no tiene privilegios para crear plantilla",
+	      "Usuario sin privilegio", JOptionPane.ERROR_MESSAGE);	
 	   }
 	}
 	private void evaluarRepresentante(){
@@ -177,10 +174,10 @@ public class MainWindow extends JFrame implements ActionListener {
 			ocultar();
 			
 		}else{
-			JOptionPane.showMessageDialog(null,
-						               "Usted no tiene privilegios para evaluar representantes",
-						               "Usuario sin privilegio", 
-									    JOptionPane.ERROR_MESSAGE);	
+			JOptionPane.showMessageDialog(null, 
+			                              "Usted no tiene privilegios para evaluar representantes",
+			                              "Usuario sin privilegio", 
+					              JOptionPane.ERROR_MESSAGE);	
 		}
 	
 	}
@@ -198,7 +195,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	    	JOptionPane.showMessageDialog(null,
 		                               "Usted no tiene privilegios para actualizar evaluaciones",
 		                               "Usuario sin privilegio", 
-					                    JOptionPane.ERROR_MESSAGE);
+					       JOptionPane.ERROR_MESSAGE);
 	    }
 	}
 	
@@ -215,7 +212,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	    	JOptionPane.showMessageDialog(null,
 		                               "Usted no tiene privilegios para revisar evaluaciones",
 		                               "Usuario sin privilegio", 
-					                    JOptionPane.ERROR_MESSAGE);
+					        JOptionPane.ERROR_MESSAGE);
 	    }
 	}
 
