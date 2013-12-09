@@ -146,7 +146,7 @@ public class RevisionForm extends JFrame implements ActionListener{
 			 panelCentral.add(lblRespuesta);
 			 
 			// Las casillas de reclamacion
-		     chk1[k] = new JCheckBox();
+		         chk1[k] = new JCheckBox();
 			 chk1[k].setBackground(Color.WHITE);
 			 chk1[k].setBounds(557, suma, 47, 23);
 			 chk1[k].addActionListener(this);
@@ -154,11 +154,11 @@ public class RevisionForm extends JFrame implements ActionListener{
 			 
 			// Los comentarios
 			 textAreaComent[k] = new TextArea(); 
-		     textAreaComent[k].setFont(new Font("Calibri", Font.BOLD, 11));
-		     textAreaComent[k].setBackground(Color.WHITE);
-		     textAreaComent[k].setEnabled(false);
-		     textAreaComent[k].setBounds(668, suma, 193, 61);
-		     panelCentral.add(textAreaComent[k]);
+		         textAreaComent[k].setFont(new Font("Calibri", Font.BOLD, 11));
+		         textAreaComent[k].setBackground(Color.WHITE);
+		         textAreaComent[k].setEnabled(false);
+		         textAreaComent[k].setBounds(668, suma, 193, 61);
+		         panelCentral.add(textAreaComent[k]);
 		      	
 			 suma = suma + i + 40;
 			 k++;
@@ -172,7 +172,7 @@ public class RevisionForm extends JFrame implements ActionListener{
 	//--------------------------------------------
 	public void guardarRevision(int idEval, HashMap<Integer, String> respReclam){
 	    cEvaluacion.guardarRevision(idEval, respReclam);
-		JOptionPane.showMessageDialog(null, "Evaluacion " + idEval + " Reclamada!");
+	    JOptionPane.showMessageDialog(null, "Evaluacion " + idEval + " Reclamada!");
 	}
 	
 	public void mostrar(){
@@ -219,8 +219,8 @@ public class RevisionForm extends JFrame implements ActionListener{
 			
 			if( JOptionPane.showConfirmDialog(null,
 					"Esta seguro que desea enviar los cambios?",
-	                "Confirmando Reclamacion", 
-	                JOptionPane.YES_NO_OPTION)  == JOptionPane.YES_OPTION)
+	                                "Confirmando Reclamacion", 
+	                                JOptionPane.YES_NO_OPTION)  == JOptionPane.YES_OPTION)
 			    {   
 			    	guardarRevision(id,respReclam); // Se envia la Revision
 			    	ocultar();
@@ -231,7 +231,7 @@ public class RevisionForm extends JFrame implements ActionListener{
 		if ( evento.getSource() == btnCancelar ){
 			ocultar();
 			RevisarEvaluacionForm revisar = new RevisarEvaluacionForm();
-	        revisar.mostrar();
+	                revisar.mostrar();
 		}
 		
 	}
