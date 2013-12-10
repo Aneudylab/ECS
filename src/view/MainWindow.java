@@ -22,7 +22,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	// -----------------------------------------------------------------
 
 	private static final String CREAR_PLANTILLA = "crearPantillaEvaluacion";
-	private static final String GENERAR_REPORTE = "generarReporte";
 	private static final String EVALUAR_REPRESENTANTE = "evaluarRepresentante";
 	private static final String ACTUALIZAR_EVALUACION = "actualizarEvaluacion";
 	private static final String REVISAR_EVALUACION = "revisarEvaluacion";
@@ -38,7 +37,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	// -----------------------------------------------------------------
 
 	private JButton btnCrearPlantillaEvaluacion;
-	private JButton btnGenerarReporte;
 	private JButton btnEvaluarReprecentante;
 	private JButton btnActualizarEvaluacion;
 	private JButton btnRevisarEvaluacion;
@@ -71,8 +69,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		gbc.insets = new Insets(5, 18, 5, 18);
 		add(panelImagen, gbc);
 		
-		
-		
 		btnCrearPlantillaEvaluacion = new JButton("Crear Plantilla    ", null);
 		btnCrearPlantillaEvaluacion.setBounds(30, 100, 90, 30);
 		gbc.gridy = 2;
@@ -81,13 +77,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		btnCrearPlantillaEvaluacion.addActionListener(this);
 		add(btnCrearPlantillaEvaluacion, gbc);
 
-		btnGenerarReporte = new JButton("Generar Reporte ");
-		btnGenerarReporte.setBounds(100, 100, 100, 100);
-		gbc.gridy = 3;
-		btnGenerarReporte.setActionCommand(GENERAR_REPORTE);
-		btnGenerarReporte.addActionListener(this);
-		add(btnGenerarReporte, gbc);
-
+		
 		btnEvaluarReprecentante = new JButton("Evaluar Representante ");
 		btnEvaluarReprecentante.setBounds(100, 100, 100, 100);
 		gbc.gridy = 4;
@@ -128,11 +118,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		if (CREAR_PLANTILLA.equals(comando)) {
 			CrearNuevaPlantilla();
-		}
-		
-		if (GENERAR_REPORTE.equals(comando)) {
-			JOptionPane.showMessageDialog(this, "En Construccion..... ",
-					"Revisar reporte ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (EVALUAR_REPRESENTANTE.equals(comando)) {
 			evaluarRepresentante();
