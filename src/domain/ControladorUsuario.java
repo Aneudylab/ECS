@@ -15,7 +15,6 @@ public class ControladorUsuario{
 	ArrayList<Supervisor> tmpSupervisores = unSuperDA.leerSupervisores();
     
 	HashMap<Integer,String> listaSuper = new HashMap<Integer,String>();
-	listaSuper.put(0,"");
 	
     for (Supervisor tmpSpv : tmpSupervisores){
 	   
@@ -34,7 +33,6 @@ public class ControladorUsuario{
 	ArrayList<Rol> tmpRoles = unRolDA.leerRoles();
     
 	HashMap<Integer,String> listaRoles = new HashMap<Integer,String>();
-	listaRoles.put(0,"");
 	
     for (Rol tmpRol : tmpRoles){
 	   
