@@ -1,13 +1,14 @@
 
 package view;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.*;
 import java.util.ArrayList;
+import javax.swing.*;
 import domain.ControladorUsuario;
+
 
 public class CrearUsuarioForm extends JFrame{
 
@@ -33,13 +34,14 @@ public class CrearUsuarioForm extends JFrame{
 	private JButton cancelar;
 	
     private ControladorUsuario cUsuario;
-	HashMap<Integer,String> listaRoles;
-	HashMap<Integer,String> listaSups;
-
+	private HashMap<Integer,String> listaRoles;
+	private HashMap<Integer,String> listaSups;
+    private ArrayList<Integer> tmpIndices;
 	
 	public CrearUsuarioForm(){
-			
-		super("Registro de Usuario");
+		
+		cUsuario = new ControladorUsuario();		
+		this.setTitle("Registro de Usuario");
 		this.setLocationRelativeTo(null);
 		Container c= this.getContentPane();
 		c.setLayout(new BorderLayout());
@@ -59,7 +61,6 @@ public class CrearUsuarioForm extends JFrame{
 		this.setSize(400,400);
 		this.setResizable(false);
 		
-        cUsuario = new ControladorUsuario();
 	}
 	
 	private JPanel crearPanelSuperior(){
@@ -91,7 +92,7 @@ public class CrearUsuarioForm extends JFrame{
 		//String[] roles = {"","Representante","Supervisor","Administrador"};
 		//rol= new JComboBox(roles);
 		//rol.setMaximumRowCount(3);
-		rol.setSelectedItem(-1);
+		//rol.setSelectedItem(-1);
 		rol.addItemListener(new RolListener ());
 		nombreUsuario = new JTextField(15);
 		contrasena = new JPasswordField(15);
@@ -139,13 +140,13 @@ public class CrearUsuarioForm extends JFrame{
 		return panelBotones;
 	
 	}
-	
+
 	public class RolListener implements ItemListener{
 	
 		public void itemStateChanged(ItemEvent ae){
 				
 			JComboBox jc = (JComboBox) ae.getSource();
-			String sOpcion = jc.getSelectedItem().toString();
+			String sOpcion = (String) jc.getSelectedItem();
 			JPanel panel = (JPanel)jc.getParent();
 
 			if (sOpcion.equals("Representante"))
@@ -190,6 +191,7 @@ public class CrearUsuarioForm extends JFrame{
 										  "Usuario Registrado Exitosamente",
 										  JOptionPane.INFORMATION_MESSAGE
 										  );
+			 ocultar();
 		 }
 		
 		}
@@ -203,12 +205,12 @@ public class CrearUsuarioForm extends JFrame{
 	}
     
 	private int registrarUsuario(){
-	
-     	String nom = nombre.getText();
-		int rolID = rol.getSelectedIndex();
-		String clave = contrasena.getPassword().toString();
+		
+		String nom = nombre.getText();
+		int rolID = rol.getSelectedIndex() + 1;
+		String clave = new String(contrasena.getPassword());
 		String nomUsr = nombreUsuario.getText();
-		int idSuper = supervisor.getSelectedIndex();
+		int idSuper = supervisor.isEnabled() ? tmpIndices.get(supervisor.getSelectedIndex()) : 0;
 		
         int id = crearUsuario(nom,rolID,clave,nomUsr,idSuper);		 
 
@@ -218,16 +220,16 @@ public class CrearUsuarioForm extends JFrame{
 	private boolean validarFormulario(){
 		
 		boolean valido = true;
-		char [] con = contrasena.getPassword();
-		char [] con2 = conContrasena.getPassword();
+		String con = new String(contrasena.getPassword());
+		String con2 = new String(conContrasena.getPassword());
 		
 		if(nombre.getText().equals("") || nombreUsuario.getText().equals("") || 
-		   contrasena.getText().equals("")||conContrasena.getText().equals("")){
+		    con.equals("")|| con.equals("")){
 			
 			darError(1);
 			valido = false;
 		}
-		else if( !Arrays.equals(con,con2)){
+		else if(!con.equals(con2)){
 			darError(2);
 			valido = false;
 		}
@@ -295,39 +297,38 @@ public class CrearUsuarioForm extends JFrame{
 		this.dispose();
     }
 	
+	@SuppressWarnings("unchecked")
 	  //Metodo para cargar las lista de los combox
    public void llenarComboBox(){
-  
-      listaSups = new HashMap<Integer,String> ();
-	  listaSups.put(0,"");
-      listaSups.put(1,"Jose");	  
-	  listaSups.put(2,"Antonio");
-	  listaSups.put(3,"Vargas");
-	  // new ControladorUsuario.obtenerListaSupervisores();
-	   
-	  listaRoles = new HashMap<Integer,String>(); 
-	  listaRoles.put(0,"");
-      listaRoles.put(1,"Representante");	  
-	  listaRoles.put(2,"Supervisor");
-	  listaRoles.put(3,"Administrador");
-	  //   new ControladorUsuario.obtenerListaRoles();
-      
-	  ArrayList<String> tmpSuper = new ArrayList<String>(listaSups.values());
-	  ArrayList<String> tmpRol = new ArrayList<String>(listaRoles.values());
 	  
-	  supervisor = new JComboBox(tmpSuper.toArray());
+      listaSups = cUsuario.obtenerListaSupervisores(); 	  
+	  listaRoles = cUsuario.obtenerListaRoles(); 
+	  
+	//  String[] lsupervisores = (String[])listaSups.values().toArray();
+	  //String[] lroles = (String[])listaRoles.values().toArray();
+
+	  supervisor = new JComboBox<Object>();
 	  supervisor.setEnabled(false);
-	  rol = new JComboBox(tmpRol.toArray());
+	  rol = new JComboBox<Object>();
 	  
+	  for(Map.Entry<Integer,String> tmpS : listaRoles.entrySet()){
+	     rol.addItem(tmpS.getValue());
+	  }
+	  
+	  
+	   tmpIndices = new ArrayList<Integer>();
+	   for(Map.Entry<Integer,String> tmpS : listaSups.entrySet())
+	   {
+		  tmpIndices.add(tmpS.getKey());
+		  supervisor.addItem(tmpS.getValue());
+	   }
    }
    
    //Metodo que se ejecutara a la hora de crear el usuario
    public int crearUsuario(String usr,int rol, String clave,
                              String nomUsr, int idSuper){
 	
-	  ControladorUsuario unUsrCont = new ControladorUsuario();
-	
-	  int idUsr = unUsrCont.crearUsuario(usr,rol,clave,nomUsr,idSuper);
+	  int idUsr = cUsuario.crearUsuario(usr,rol,clave,nomUsr,idSuper);
 	
 	  return idUsr;
 	}
