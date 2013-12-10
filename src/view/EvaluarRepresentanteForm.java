@@ -212,7 +212,7 @@ public class EvaluarRepresentanteForm implements ActionListener {
 		for (Map.Entry<Integer, String> entry : puntosEv.entrySet()) {
 			
 			panelEvaluacion.getIDrespuesta().add(entry.getKey());
-			panelEvaluacion.getRbtnSi().add(new JRadioButton(" Si "));
+			panelEvaluacion.getRbtnSi().add(new JRadioButton(" Si ",true));
 			panelEvaluacion.getRbtnNo().add(new JRadioButton(" No "));
 
 			panelEvaluacion.getBtnGroup().add(new ButtonGroup());
